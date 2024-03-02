@@ -17,6 +17,8 @@ Let's assume that we have a VM with the following configuration:
 - We are not using [Azure Hybrid Benefit](https://azure.microsoft.com/en-us/pricing/hybrid-benefit/#overview)
 - We are not using [Reserved Instances](https://azure.microsoft.com/en-us/pricing/reserved-vm-instances).
 
+Do some calculations:
+
 - Running VM cost: €147.37/month
 - If we are running the VM only 10 hours per day, 7 days per week (300h per month), the cost will be: €60.56/month - it means that we can save €86.81/month (58.8%).
 - If we are running the VM only 10 hours per day, 5 days per week (220h per month), the cost will be: €44.01/month - it means that we can save €103,36/month (70%).

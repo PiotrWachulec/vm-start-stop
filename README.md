@@ -49,7 +49,7 @@ We have to options to achieve this goal with the existing Azure services:
 
 ## Process design
 
-
+![Process design](docs/assets/images/process-design.png)
 
 # Useful materials
 

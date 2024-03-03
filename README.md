@@ -35,7 +35,7 @@ The solution needs to turn VMs on and off based on schedule within tags on the V
 
 # Existing options
 
-We have to options to achieve this goal with the existing Azure services:
+We have two options to achieve this goal with the existing Azure services:
 - [based on Azure Functions: Start/Stop VMs v2 overview](https://learn.microsoft.com/en-us/azure/azure-functions/start-stop-vms/overview)
 - [Auto-shutdown a virtual machine](https://learn.microsoft.com/en-us/azure/virtual-machines/auto-shutdown-vm?tabs=portal)
 

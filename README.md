@@ -31,6 +31,7 @@ The solution needs to turn VMs on and off based on schedule within tags on the V
     - Email notification
     - Slack/Discord notification
 - A single solution should cover different subscriptions.
+- The solution should work in 15-minute time frames.
 
 # Existing options
 
@@ -41,3 +42,15 @@ We have to options to achieve this goal with the existing Azure services:
 # Design 
 
 [Miro board](https://miro.com/app/board/uXjVNmbIwqo=/?share_link_id=652932784930)
+
+## High-level components
+
+![High-level components](docs/assets/images/high-level-components.png)
+
+## Process design
+
+
+
+# Useful materials
+
+- [Event storming](https://www.eventstorming.com/)

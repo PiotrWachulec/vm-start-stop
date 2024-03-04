@@ -45,11 +45,11 @@ We have two options to achieve this goal with the existing Azure services:
 
 ## High-level components
 
-![High-level components](docs/assets/images/high-level-components.png)
+![High-level components](docs/assets/images/high-level-components.jpg)
 
 ## Process design
 
-![Process design](docs/assets/images/process-design.png)
+![Process design](docs/assets/images/process-design.jpg)
 
 # Useful materials
 

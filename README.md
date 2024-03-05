@@ -51,6 +51,12 @@ We have two options to achieve this goal with the existing Azure services:
 
 ![Process design](docs/assets/images/process-design.jpg)
 
+## Infrastucture design
+
+[VM Start/Stop diagram on AzureDiagrams.com](https://azurediagrams.com/VlmwCF6o)
+
+![Infrastructure design](docs/assets/images/infra-diagram.png)
+
 # Useful materials
 
 - [Event storming](https://www.eventstorming.com/)

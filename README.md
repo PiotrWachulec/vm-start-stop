@@ -53,9 +53,19 @@ We have two options to achieve this goal with the existing Azure services:
 
 ## Infrastucture design
 
-[VM Start/Stop diagram on AzureDiagrams.com](https://azurediagrams.com/VlmwCF6o)
+### Diagram test on AzureDiagrams.com
 
-![Infrastructure design](docs/assets/images/infra-diagram.png)
+In the 5th day of the challenge, I have created a diagram of the infrastructure on [AzureDiagrams.com](https://azurediagrams.com/). The diagram is available at the following link: [VM Start/Stop diagram on AzureDiagrams.com](https://azurediagrams.com/VlmwCF6o)
+
+![Infrastructure design on AzureDiagrams.com](docs/assets/images/infra-diagram-azurediagrams.png)
+
+The tool is handy, but it has some limitations. I will use it for the initial design, but I will use another tool for the final version.
+
+### Diagram on draw.io
+
+The raw version of the diagram is stored in the file: `docs/assets/vm-start-stop.drawio`. 
+
+![Infrastructure design on draw.io](docs/assets/images/infra-diagram.png)
 
 # Useful materials
 

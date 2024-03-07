@@ -67,6 +67,16 @@ The raw version of the diagram is stored in the file: `docs/assets/vm-start-stop
 
 ![Infrastructure design on draw.io](docs/assets/images/infra-diagram.png)
 
+# Resource naming convention
+
+It is an excellent practice to have a naming convention for resources. The naming convention can help identify the resource's purpose, environment, owner, etc. It supports proper resource management and cost allocation and helps to determine the resources in the logs, monitor them, etc.
+
+Useful links:
+- [Define your naming convention](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming)
+- [Naming rules and restrictions for Azure resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules)
+- [Develop your naming and tagging strategy for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging?source=recommendations)
+- [Azure Naming Tool wiki](https://github.com/mspnp/AzureNamingTool/wiki)
+
 # Useful materials
 
 - [Event storming](https://www.eventstorming.com/)

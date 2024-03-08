@@ -76,6 +76,13 @@ Useful links:
 - [Naming rules and restrictions for Azure resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-name-rules)
 - [Develop your naming and tagging strategy for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging?source=recommendations)
 - [Azure Naming Tool wiki](https://github.com/mspnp/AzureNamingTool/wiki)
+- [Abbreviation examples for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations?source=recommendations)
+
+## Azure Naming Tool
+
+The tool installation can be found in the [documentation](https://github.com/mspnp/AzureNamingTool/wiki/Installation). The preferred way is to run it as a Docker container.
+
+Configuration file for Azure Naming Tool is placed here: `src/naming-convention/globalconfig.json`.
 
 # Useful materials
 

@@ -82,7 +82,9 @@ Useful links:
 
 The tool installation can be found in the [documentation](https://github.com/mspnp/AzureNamingTool/wiki/Installation). The preferred way is to run it as a Docker container.
 
-Configuration file for Azure Naming Tool is placed here: `src/naming-convention/globalconfig.json`.
+The global configuration file for the Azure Naming Tool is placed here: `src/naming-convention/globalconfig.json`.
+
+The components configuration file for the Azure Naming Tool is placed here: `src/naming-convention/componentsconfig.json`.
 
 # Useful materials
 

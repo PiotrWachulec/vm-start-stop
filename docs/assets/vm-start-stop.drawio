@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-03-06T15:46:10.889Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" version="23.1.5" etag="6fJh-zZnpe7idQBAeM1o" type="device">
+<mxfile host="Electron" modified="2024-03-09T20:00:56.088Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" version="23.1.5" etag="d_lEzeHyvBLK6KSZlb68" type="device">
   <diagram id="I_NZRvvyxYQ18id1Or9Y" name="Page-1">
     <mxGraphModel dx="1026" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -16,62 +16,71 @@
         <mxCell id="Gxp5gNr0jwAPQSZMOCmy-1" value="PAYG-01" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Key.svg;" vertex="1" parent="1">
           <mxGeometry x="25" y="24" width="31" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-4" value="rg-vm-start-stop-dev" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/ResourceGroup.svg;imageBackground=default;" vertex="1" parent="1">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-4" value="eit-vms-plc-prd-rg-1" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/ResourceGroup.svg;imageBackground=default;" vertex="1" parent="1">
           <mxGeometry x="85" y="56" width="50" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-6" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/app_services/App_Service_Plans.svg;" vertex="1" parent="1">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-6" value="eit-vms-plc-prd-plan-1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/app_services/App_Service_Plans.svg;" vertex="1" parent="1">
           <mxGeometry x="404" y="370" width="64" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Gxp5gNr0jwAPQSZMOCmy-7" target="Gxp5gNr0jwAPQSZMOCmy-6">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
+            <mxPoint x="430" y="215" as="sourcePoint" />
+            <mxPoint x="430" y="370" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="450" y="330" />
-              <mxPoint x="450" y="330" />
+              <mxPoint x="430" y="330" />
+              <mxPoint x="430" y="330" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Gxp5gNr0jwAPQSZMOCmy-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="Gxp5gNr0jwAPQSZMOCmy-7" target="Gxp5gNr0jwAPQSZMOCmy-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Gxp5gNr0jwAPQSZMOCmy-7" target="Gxp5gNr0jwAPQSZMOCmy-8">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
+            <mxPoint x="430" y="215" as="sourcePoint" />
+            <mxPoint x="247" y="376" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="450" y="340" />
-              <mxPoint x="267" y="340" />
+              <mxPoint x="430" y="340" />
+              <mxPoint x="247" y="340" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Gxp5gNr0jwAPQSZMOCmy-7" target="Gxp5gNr0jwAPQSZMOCmy-17">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
+            <mxPoint x="430" y="215" as="sourcePoint" />
+            <mxPoint x="624" y="370" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="450" y="300" />
-              <mxPoint x="644" y="300" />
+              <mxPoint x="430" y="300" />
+              <mxPoint x="624" y="300" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="Gxp5gNr0jwAPQSZMOCmy-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="Gxp5gNr0jwAPQSZMOCmy-7" target="Gxp5gNr0jwAPQSZMOCmy-23">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-7" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/compute/Function_Apps.svg;" vertex="1" parent="1">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-7" value="eit-vms-plc-prd-func-1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/compute/Function_Apps.svg;" vertex="1" parent="1">
           <mxGeometry x="396" y="155" width="68" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-8" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/storage/Storage_Accounts.svg;" vertex="1" parent="1">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-8" value="eitvmsplcprdst1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/storage/Storage_Accounts.svg;" vertex="1" parent="1">
           <mxGeometry x="214" y="376" width="65" height="52" as="geometry" />
         </mxCell>
         <mxCell id="Gxp5gNr0jwAPQSZMOCmy-12" value="Azure Monitor" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/management_governance/Monitor.svg;" vertex="1" parent="1">
           <mxGeometry x="720" y="460" width="64" height="64" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-13" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/devops/Application_Insights.svg;" vertex="1" parent="1">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-13" value="eit-vms-plc-prd-appi-1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/devops/Application_Insights.svg;" vertex="1" parent="1">
           <mxGeometry x="300" y="215" width="44" height="63" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-15" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/integration/Service_Bus.svg;" vertex="1" parent="1">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-15" value="eit-vms-plc-prd-sb-1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/integration/Service_Bus.svg;" vertex="1" parent="1">
           <mxGeometry x="620" y="155" width="68" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-17" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/security/Key_Vaults.svg;" vertex="1" parent="1">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-17" value="eit-vms-plc-prd-kv-1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/security/Key_Vaults.svg;" vertex="1" parent="1">
           <mxGeometry x="590" y="370" width="68" height="68" as="geometry" />
         </mxCell>
-        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-23" value="" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/integration/App_Configuration.svg;" vertex="1" parent="1">
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-23" value="eit-vms-plc-prd-appcs-1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/integration/App_Configuration.svg;" vertex="1" parent="1">
           <mxGeometry x="170" y="151" width="64" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="Gxp5gNr0jwAPQSZMOCmy-28" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;For the development environment the design is the same, part &#39;prd&#39; in the resources names is replaced with &#39;dev&#39;. Resources are places in the same subscription&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="509" width="500" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -86,6 +86,20 @@ The global configuration file for the Azure Naming Tool is placed here: `src/nam
 
 The components configuration file for the Azure Naming Tool is placed here: `src/naming-convention/componentsconfig.json`.
 
+# Deployment
+
+Deployments into Azure are done with Powershell commands and scripts stored in the `src/scripts` folder.
+
+## Splatting 
+
+The splatting mechanism is a Powershell syntax that allows you to simplify runs of cmdlets with a significant number of parameters.
+
+[about_Splatting](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.4)
+
+## Approved verbs
+
+[Approved Verbs for PowerShell Commands](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands?view=powershell-7.4)
+
 # Useful materials
 
 - [Event storming](https://www.eventstorming.com/)

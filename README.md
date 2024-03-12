@@ -103,3 +103,4 @@ The splatting mechanism is a Powershell syntax that allows you to simplify runs 
 # Useful materials
 
 - [Event storming](https://www.eventstorming.com/)
+- [`.gitignore` & `.git/info/exclude`](https://git-scm.com/docs/gitignore)

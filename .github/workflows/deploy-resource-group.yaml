@@ -1,5 +1,7 @@
 name: Deploy resource group
-on: [push]
+on: 
+    push:
+    workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,3 +17,4 @@ jobs:
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         enable-AzPSSession: true
+

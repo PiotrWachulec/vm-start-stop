@@ -42,5 +42,5 @@ jobs:
               TemplateParameterFilePath = "./src/infra/resourceGroup.prd.bicepparam
           }
 
-          ./src/scripts/Deploy-ToSubscription.ps1 @ParamsDev
+          ./src/scripts/Deploy-ToSubscription.ps1 @ParamsProd
         azPSVersion: "latest"

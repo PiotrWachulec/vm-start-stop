@@ -109,6 +109,13 @@ The splatting mechanism is a Powershell syntax that allows you to simplify runs 
 
 # Useful materials
 
+## Links
+
 - [Event storming](https://www.eventstorming.com/)
 - [`.gitignore` & `.git/info/exclude`](https://git-scm.com/docs/gitignore)
 - [OpenID Connect](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc)
+- [GitHub Actions: About security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
+
+## Tools
+
+- [Espanso](https://espanso.org/) - Text expander

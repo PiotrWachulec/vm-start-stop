@@ -39,7 +39,7 @@ jobs:
         inlineScript: |
           $ParamsProd = @{
               TemplateFilePath = "./src/infra/resourceGroup.bicep"
-              TemplateParameterFilePath = "./src/infra/resourceGroup.prd.bicepparam
+              TemplateParameterFilePath = "./src/infra/resourceGroup.prd.bicepparam"
           }
 
           ./src/scripts/Deploy-ToSubscription.ps1 @ParamsProd

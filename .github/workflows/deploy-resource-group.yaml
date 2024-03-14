@@ -26,8 +26,8 @@ jobs:
       with:
         inlineScript: |
           $ParamsDev = @{
-              TemplateFilePath = './src/infra/resourceGroup.bicep'
-              TemplateParameterFilePath = './src/infra/resourceGroup.dev.bicepparam'
+              TemplateFilePath = "./src/infra/resourceGroup.bicep"
+              TemplateParameterFilePath = "./src/infra/resourceGroup.dev.bicepparam"
           }
 
           ./src/scripts/Deploy-ToSubscription.ps1 @ParamsDev
@@ -37,9 +37,9 @@ jobs:
       uses: azure/powershell@v1
       with:
         inlineScript: |
-          $ParamsDev = @{
-              TemplateFilePath = './src/infra/resourceGroup.bicep'
-              TemplateParameterFilePath = './src/infra/resourceGroup.prd.bicepparam'
+          $ParamsProd = @{
+              TemplateFilePath = "./src/infra/resourceGroup.bicep"
+              TemplateParameterFilePath = "./src/infra/resourceGroup.prd.bicepparam
           }
 
           ./src/scripts/Deploy-ToSubscription.ps1 @ParamsDev

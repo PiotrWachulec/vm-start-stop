@@ -31,7 +31,7 @@ jobs:
           }
 
           ./src/scripts/Deploy-ToSubscription.ps1 @ParamsDev
-        azPSVersion: "latest"
+        azPSVersion: "11.4.0"
 
     - name: Deploy PROD resource group
       uses: azure/powershell@v1
@@ -43,4 +43,4 @@ jobs:
           }
 
           ./src/scripts/Deploy-ToSubscription.ps1 @ParamsProd
-        azPSVersion: "latest"
+        azPSVersion: "11.4.0"

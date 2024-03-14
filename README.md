@@ -92,6 +92,8 @@ Deployments into Azure are done with Powershell commands and scripts stored in t
 
 The authorization of the GitHub Actions workflow is done with Identity Federation how it is described in the documentation: [Quickstart: Deploy Bicep files by using GitHub Actions](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-github-actions?tabs=CLI%2Copenid)
 
+The deployment workflows are using [Azure/powershell](https://github.com/Azure/powershell) GitHub Action.
+
 ## Splatting 
 
 The splatting mechanism is a Powershell syntax that allows you to simplify runs of cmdlets with a significant number of parameters.

@@ -6,41 +6,56 @@ permissions:
     id-token: write
     contents: read
 jobs:
-  deploy:
+  deploy-dev:
+    environment: dev
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@main
 
-    - name: Checkout code
-      uses: actions/checkout@main
+      - name: Log into Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
 
-    - name: Log into Azure
-      uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        enable-AzPSSession: true
+      - name: Deploy DEV resource group
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            $ParamsDev = @{
+                TemplateFilePath = "./src/infra/resourceGroup.bicep"
+                TemplateParameterFilePath = "./src/infra/resourceGroup.dev.bicepparam"
+            }
 
-    - name: Deploy DEV resource group
-      uses: azure/powershell@v1
-      with:
-        inlineScript: |
-          $ParamsDev = @{
-              TemplateFilePath = "./src/infra/resourceGroup.bicep"
-              TemplateParameterFilePath = "./src/infra/resourceGroup.dev.bicepparam"
-          }
+            ./src/scripts/Deploy-ToSubscription.ps1 @ParamsDev
+          azPSVersion: "11.4.0"
 
-          ./src/scripts/Deploy-ToSubscription.ps1 @ParamsDev
-        azPSVersion: "11.4.0"
+  deploy-prd:
+    environment: prd
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@main
 
-    - name: Deploy PROD resource group
-      uses: azure/powershell@v1
-      with:
-        inlineScript: |
-          $ParamsProd = @{
-              TemplateFilePath = "./src/infra/resourceGroup.bicep"
-              TemplateParameterFilePath = "./src/infra/resourceGroup.prd.bicepparam"
-          }
+      - name: Log into Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          enable-AzPSSession: true
 
-          ./src/scripts/Deploy-ToSubscription.ps1 @ParamsProd
-        azPSVersion: "11.4.0"
+      - name: Deploy PROD resource group
+        uses: azure/powershell@v1
+        with:
+          inlineScript: |
+            $ParamsProd = @{
+                TemplateFilePath = "./src/infra/resourceGroup.bicep"
+                TemplateParameterFilePath = "./src/infra/resourceGroup.prd.bicepparam"
+            }
+
+            ./src/scripts/Deploy-ToSubscription.ps1 @ParamsProd
+          azPSVersion: "11.4.0"

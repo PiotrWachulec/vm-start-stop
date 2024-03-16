@@ -97,6 +97,10 @@ The deployment workflows are using:
 - [Azure/powershell](https://github.com/Azure/powershell) GitHub Action,
 - [Azure/login](https://github.com/Azure/login) GitHub Action.
 
+The workflow [environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment) were configured separately to deploy resources into the production and development environments. Also, it was required to allow connections based on federated identity from different branches. More info in the documentation [Configure a federated identity credential on an app: GitHub Actions (point 4.)](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust?pivots=identity-wif-apps-methods-azp#github-actions).
+
+In the workflow, we have also added conditional deployments to ensure that the resources are only deployed to the production environment from the main branch. More info [Using conditions to control job execution](https://docs.github.com/en/actions/using-jobs/using-conditions-to-control-job-execution).
+
 ## Splatting 
 
 The splatting mechanism is a Powershell syntax that allows you to simplify runs of cmdlets with a significant number of parameters.
@@ -115,6 +119,8 @@ The splatting mechanism is a Powershell syntax that allows you to simplify runs 
 - [`.gitignore` & `.git/info/exclude`](https://git-scm.com/docs/gitignore)
 - [OpenID Connect](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc)
 - [GitHub Actions: About security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
+- [Workload identity federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
+- [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 
 ## Tools
 

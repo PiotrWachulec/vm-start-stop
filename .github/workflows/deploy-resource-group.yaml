@@ -35,6 +35,7 @@ jobs:
 
   deploy-prd:
     environment: prd
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

@@ -7,7 +7,7 @@ resource devRoleAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' 
   name: guid(resourceGroup().name, contributorRoleId, resourceDeploymentPrincipalId)
   properties: {
     principalId: resourceDeploymentPrincipalId
-    roleDefinitionId: contributorRoleId
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', contributorRoleId)
     principalType: 'ServicePrincipal'
   }
 }

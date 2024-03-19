@@ -1,0 +1,18 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Deploy to SUB DEV",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}/src/scripts/Deploy-ToSubscription.ps1",
+            "args": [
+                "-TemplateFilePath", "./src/infra/resourceGroup.bicep",
+                "-TemplateParameterFilePath", "./src/infra/resourceGroup.dev.bicepparam"
+            ]
+        }
+    ]
+}

@@ -18,7 +18,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2023-07-01' = {
 }
 
 module ra 'roleAssignment.bicep' = {
-  name: 'ra'
+  name: '${deployment().name}-ra'
   scope: resourceGroup(rg.name)
   params: {
     resourceDeploymentPrincipalId: resourceDeploymentPrincipalId

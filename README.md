@@ -111,6 +111,12 @@ The splatting mechanism is a Powershell syntax that allows you to simplify runs 
 
 [Approved Verbs for PowerShell Commands](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands?view=powershell-7.4)
 
+## Role assignments
+
+Role assignments with Bicep are described in the documentation: [Create Azure RBAC resources by using Bicep](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/scenarios-rbac).
+
+The `principalId` value is an object ID of the Enterprise Application related to the service principal.
+
 # Useful materials
 
 ## Links
@@ -121,6 +127,8 @@ The splatting mechanism is a Powershell syntax that allows you to simplify runs 
 - [GitHub Actions: About security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
 - [Workload identity federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
 - [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- [App Registration vs Enterprise Applications](https://learn.microsoft.com/en-us/answers/questions/270680/app-registration-vs-enterprise-applications)
+- [Application and service principal objects in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser)
 
 ## Tools
 

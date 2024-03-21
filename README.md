@@ -117,6 +117,13 @@ Role assignments with Bicep are described in the documentation: [Create Azure RB
 
 The `principalId` value is an object ID of the Enterprise Application related to the service principal.
 
+## Deployment mode
+
+The 'Complete' mode deployment ensures that deployments manage all resources on the resource group level. More information:
+- [Azure Resource Manager deployment modes](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-modes)
+- [Using linked and nested templates when deploying Azure resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/linked-templates?tabs=azure-powershell)
+- [Deletion of Azure resources for complete mode deployments](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-complete-mode-deletion)
+
 # Useful materials
 
 ## Links

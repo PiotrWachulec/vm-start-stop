@@ -13,6 +13,17 @@
                 "-TemplateFilePath", "./src/infra/resourceGroup.bicep",
                 "-TemplateParameterFilePath", "./src/infra/resourceGroup.dev.bicepparam"
             ]
+        },
+        {
+            "name": "Deploy to RG DEV",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}/src/scripts/Deploy-ToResourceGroup.ps1",
+            "args": [
+                "-TemplateFilePath", "./src/infra/vm-start-stop.bicep",
+                "-TemplateParameterFilePath", "./src/infra/vm-start-stop.dev.bicepparam",
+                "-ResourceGroupName", "eit-vms-plc-dev-rg-1"
+            ]
         }
     ]
 }

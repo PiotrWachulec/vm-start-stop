@@ -18,6 +18,8 @@ $params = @{
     TemplateFile          = $TemplateFilePath
     TemplateParameterFile = $TemplateParameterFilePath
     Name                  = "vms_$timestamp"
+    Mode                  = 'Complete'
+    Force                 = $true
 }
 
 New-AzResourceGroupDeployment @params

@@ -23,4 +23,8 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
     name: 'F1'
     tier: 'Free'
   }
+  kind: 'linux'
+  properties: {
+    reserved: true
+  }
 }

@@ -124,6 +124,10 @@ The 'Complete' mode deployment ensures that deployments manage all resources on 
 - [Using linked and nested templates when deploying Azure resources](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/linked-templates?tabs=azure-powershell)
 - [Deletion of Azure resources for complete mode deployments](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deployment-complete-mode-deletion)
 
+## `WhatIf` deployment check
+
+To check the deployment before the actual deployment, the `WhatIf` parameter can be used. More information: [ARM template deployment what-if operation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if?tabs=azure-powershell)
+
 # Useful materials
 
 ## Links

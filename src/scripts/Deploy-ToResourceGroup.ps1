@@ -8,10 +8,15 @@ param (
     $TemplateParameterFilePath,
     [Parameter(Mandatory = $true)]
     [string]
-    $ResourceGroupName
+    $ResourceGroupName,
+    [Parameter()]
+    [string]
+    $Validate
 )
 
 $timestamp = Get-Date -Format 'yyyyMMddHHmmss'
+
+$isValidation = $Validate -eq 'true'
 
 $params = @{
     ResourceGroupName     = $ResourceGroupName
@@ -19,7 +24,8 @@ $params = @{
     TemplateParameterFile = $TemplateParameterFilePath
     Name                  = "vms_$timestamp"
     Mode                  = 'Complete'
-    Force                 = $true
+    Force                 = !$isValidation
+    WhatIf                = $isValidation
 }
 
 New-AzResourceGroupDeployment @params

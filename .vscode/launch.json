@@ -15,6 +15,18 @@
             ]
         },
         {
+            "name": "Validate deploy to RG DEV",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}/src/scripts/Deploy-ToResourceGroup.ps1",
+            "args": [
+                "-TemplateFilePath", "./src/infra/vm-start-stop.bicep",
+                "-TemplateParameterFilePath", "./src/infra/vm-start-stop.dev.bicepparam",
+                "-ResourceGroupName", "eit-vms-plc-dev-rg-1",
+                "-Validate", "true"
+            ]
+        },
+        {
             "name": "Deploy to RG DEV",
             "type": "PowerShell",
             "request": "launch",

@@ -31,10 +31,6 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-01-01' = {
     name: 'Y1'
     tier: 'Dynamic'
   }
-  kind: 'linux'
-  properties: {
-    reserved: true
-  }
 }
 
 resource functionApp 'Microsoft.Web/sites@2023-01-01' = {

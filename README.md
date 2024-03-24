@@ -140,6 +140,8 @@ To check the deployment before the actual deployment, the `WhatIf` parameter can
 - [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
 - [App Registration vs Enterprise Applications](https://learn.microsoft.com/en-us/answers/questions/270680/app-registration-vs-enterprise-applications)
 - [Application and service principal objects in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser)
+- [Products available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/)
+- [Storage considerations for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/storage-considerations?tabs=azure-cli)
 
 ## Tools
 

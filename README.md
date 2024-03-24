@@ -128,6 +128,38 @@ The 'Complete' mode deployment ensures that deployments manage all resources on 
 
 To check the deployment before the actual deployment, the `WhatIf` parameter can be used. More information: [ARM template deployment what-if operation](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-what-if?tabs=azure-powershell)
 
+# Architecture Decision Records
+
+The Architecture Decision Records (ADR) will keep a history of architectural changes. More information about ADR can be found:
+- [Architecture decision record (ADR) on GitHub](https://github.com/joelparkerhenderson/architecture-decision-record),
+- [Architectural Decision Records: Homepage of the ADR GitHub organization](https://adr.github.io/).
+
+Template of ADRs: [Decision record template by Michael Nygard](https://github.com/joelparkerhenderson/architecture-decision-record/tree/main/locales/en/templates/decision-record-template-by-michael-nygard).
+
+## [ADR001] Azure Functions Consumption plan on Windows (2024-03-24)
+
+### Status
+
+***`ACCEPTED`***
+
+### Context
+
+During the function app deployment, there was an error:
+
+```plaintext
+Requested features are not supported in region. Please try another region. (Target: /subscriptions/88a99f8e-abc3-4f87-b5d1-6582ecf72501/resourceGroups/eit-vms-plc-dev-rg-1/providers/Microsoft.Web/serverfarms/eit-vms-plc-dev-plan-1)
+```
+
+After checking the [Products available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/) documentation, it was found that the Azure Functions Consumption plan on Linux is not available in the Poland Central region.
+
+### Decision
+
+The Azure Functions Consumption plan on Windows will be deployed in the Central region of Poland.
+
+### Consequences
+
+It is expected to double-check if the code that runs on other platforms (like Linux) will work on Windows.
+
 # Useful materials
 
 ## Links

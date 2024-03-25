@@ -10,6 +10,9 @@ param appServicePlanName string
 @description('Name of the function app')
 param functionAppName string
 
+@description('Name of the function app')
+param keyVaultName string
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
   location: location
@@ -67,5 +70,18 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
       netFrameworkVersion: 'v8.0'
     }
     httpsOnly: true
+  }
+}
+
+resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
+  name: keyVaultName
+  location: location
+  properties: {
+    sku: {
+      family: 'A'
+      name: 'standard'
+    }
+    tenantId: tenant().tenantId
+    enableRbacAuthorization: true
   }
 }

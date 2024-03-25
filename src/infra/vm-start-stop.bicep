@@ -16,6 +16,9 @@ param keyVaultName string
 @description('Name of the service bus')
 param serviceBusName string
 
+@description('Name of the service bus')
+param appConfigName string
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
   location: location
@@ -94,5 +97,13 @@ resource serviceBus 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' = {
   location: location
   sku: {
     name: 'Basic'
+  }
+}
+
+resource appConfig 'Microsoft.AppConfiguration/configurationStores@2023-08-01-preview'  = {
+  name: appConfigName
+  location: location
+  sku: {
+    name: 'Free'
   }
 }

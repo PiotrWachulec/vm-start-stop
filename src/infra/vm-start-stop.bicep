@@ -10,8 +10,11 @@ param appServicePlanName string
 @description('Name of the function app')
 param functionAppName string
 
-@description('Name of the function app')
+@description('Name of the key vault')
 param keyVaultName string
+
+@description('Name of the service bus')
+param serviceBusName string
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
@@ -83,5 +86,13 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
     }
     tenantId: tenant().tenantId
     enableRbacAuthorization: true
+  }
+}
+
+resource serviceBus 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' = {
+  name: serviceBusName
+  location: location
+  sku: {
+    name: 'Basic'
   }
 }

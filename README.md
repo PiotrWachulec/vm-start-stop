@@ -160,6 +160,36 @@ The Azure Functions Consumption plan on Windows will be deployed in the Central 
 
 It is expected to double-check if the code that runs on other platforms (like Linux) will work on Windows.
 
+## [ADR002] Removal of the App Configuration service (2024-03-26)
+
+### Status
+
+***`ACCEPTED`***
+
+### Context
+
+During the function app deployment, there was an error:
+
+```plaintext
+10:14:29 - The deployment 'vms_20240325101322' failed with error(s).
+     | Showing 1 out of 1 error(s). Status Message: The subscription has
+     | reached its limit of 'configurationStores' resources with the 'free'
+     | SKU. (Code:SkuPerSubscriptionLimitReached)  CorrelationId:
+     | beefdcbe-5a3c-489b-bb14-a9a3795a2673
+```
+
+The error message indicates that the subscription has reached its limit of 'configurationStores' resources with the 'free' SKU. Based on the documentation, each subscription has a limit of 1 free configuration store. The App Configuration service was added to store the configuration data. Source: [Which App Configuration tier should I use?](https://learn.microsoft.com/en-us/azure/azure-app-configuration/faq#which-app-configuration-tier-should-i-use).
+
+The App Configuration service in the Standard tier costs about 33 Euros per month.
+
+### Decision
+
+As the App Configuration service is not required for the current solution and the application's configuration can be handled on the function app level, it will be removed.
+
+### Consequences
+
+The application's configuration have to be handled on the function app level.
+
 # Useful materials
 
 ## Links

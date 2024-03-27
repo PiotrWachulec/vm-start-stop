@@ -19,6 +19,9 @@ param serviceBusName string
 @description('Name of the application insights')
 param applicationInsightsName string
 
+@description('Name of the log analytics workspace')
+param logAnalyticsWorkspaceName string
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
   location: location
@@ -104,11 +107,16 @@ resource serviceBus 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' = {
   }
 }
 
+resource law 'Microsoft.OperationalInsights/workspaces@2023-09-01' existing = {
+  name: logAnalyticsWorkspaceName
+}
+
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: applicationInsightsName
   location: location
   kind: 'web'
   properties: {
+    WorkspaceResourceId: law.id
     Application_Type: 'web'
     Request_Source: 'rest'
   }

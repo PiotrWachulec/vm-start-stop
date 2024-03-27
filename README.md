@@ -204,6 +204,7 @@ The application's configuration have to be handled on the function app level.
 - [Application and service principal objects in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser)
 - [Products available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/)
 - [Storage considerations for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/storage-considerations?tabs=azure-cli)
+- [What is an Azure landing zone?](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/)
 
 ## Tools
 

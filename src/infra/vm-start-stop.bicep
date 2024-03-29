@@ -22,6 +22,9 @@ param applicationInsightsName string
 @description('Name of the log analytics workspace')
 param logAnalyticsWorkspaceName string
 
+@description('Resource group name where LAW is placed')
+param logAnalyticsWorkspaceResourceGroupName string
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
   location: location
@@ -109,6 +112,7 @@ resource serviceBus 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' = {
 
 resource law 'Microsoft.OperationalInsights/workspaces@2023-09-01' existing = {
   name: logAnalyticsWorkspaceName
+  scope: resourceGroup(logAnalyticsWorkspaceResourceGroupName)
 }
 
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {

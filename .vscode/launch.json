@@ -10,8 +10,10 @@
             "request": "launch",
             "script": "${workspaceFolder}/src/scripts/Deploy-ToSubscription.ps1",
             "args": [
-                "-TemplateFilePath", "./src/infra/resourceGroup.bicep",
-                "-TemplateParameterFilePath", "./src/infra/resourceGroup.dev.bicepparam"
+                "-TemplateFilePath",
+                "./src/infra/resourceGroup.bicep",
+                "-TemplateParameterFilePath",
+                "./src/infra/resourceGroup.dev.bicepparam"
             ]
         },
         {
@@ -20,10 +22,14 @@
             "request": "launch",
             "script": "${workspaceFolder}/src/scripts/Deploy-ToResourceGroup.ps1",
             "args": [
-                "-TemplateFilePath", "./src/infra/vm-start-stop.bicep",
-                "-TemplateParameterFilePath", "./src/infra/vm-start-stop.dev.bicepparam",
-                "-ResourceGroupName", "eit-vms-plc-dev-rg-1",
-                "-Validate", "true"
+                "-TemplateFilePath",
+                "./src/infra/vm-start-stop.bicep",
+                "-TemplateParameterFilePath",
+                "./src/infra/vm-start-stop.dev.bicepparam",
+                "-ResourceGroupName",
+                "eit-vms-plc-dev-rg-1",
+                "-Validate",
+                "true"
             ]
         },
         {
@@ -32,10 +38,19 @@
             "request": "launch",
             "script": "${workspaceFolder}/src/scripts/Deploy-ToResourceGroup.ps1",
             "args": [
-                "-TemplateFilePath", "./src/infra/vm-start-stop.bicep",
-                "-TemplateParameterFilePath", "./src/infra/vm-start-stop.dev.bicepparam",
-                "-ResourceGroupName", "eit-vms-plc-dev-rg-1"
+                "-TemplateFilePath",
+                "./src/infra/vm-start-stop.bicep",
+                "-TemplateParameterFilePath",
+                "./src/infra/vm-start-stop.dev.bicepparam",
+                "-ResourceGroupName",
+                "eit-vms-plc-dev-rg-1"
             ]
+        },
+        {
+            "name": "Attach to .NET Functions",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:azureFunctions.pickProcess}"
         }
     ]
 }

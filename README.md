@@ -205,6 +205,7 @@ The application's configuration have to be handled on the function app level.
 - [Products available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/)
 - [Storage considerations for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/storage-considerations?tabs=azure-cli)
 - [What is an Azure landing zone?](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/)
+- [Multiple function projects](https://github.com/Microsoft/vscode-azurefunctions/wiki/Multiple-function-projects)
 
 ## Tools
 

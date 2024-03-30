@@ -1,10 +1,20 @@
 name: Deploy resources
-on: 
-    push:
-    workflow_dispatch:
+
+on:
+  push:
+    paths:
+      - 'src/infra/**'
+      - '.github/workflows/**'
+    paths-ignore:
+      - '.vscode/**'
+      - 'docs/**'
+      - 'src/naming-convetion'
+  workflow_dispatch:
+
 permissions:
     id-token: write
     contents: read
+
 jobs:
   deploy-dev:
     environment: dev

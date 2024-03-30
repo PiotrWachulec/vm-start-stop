@@ -1,8 +1,15 @@
 name: Deploy DotNet project to Azure Function App
 
 on:
-    push:
-    workflow_dispatch:
+  push:
+    paths:
+      - 'src/app/**'
+      - '.github/workflows/deploy-function-app.yaml'
+    paths-ignore:
+      - '.vscode/**'
+      - 'docs/**'
+      - 'src/naming-convetion'
+  workflow_dispatch:
 
 env:
   AZURE_FUNCTIONAPP_NAME_DEV: 'eit-vms-plc-dev-func-1'

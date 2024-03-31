@@ -210,3 +210,7 @@ The application's configuration have to be handled on the function app level.
 ## Tools
 
 - [Espanso](https://espanso.org/) - Text expander
+
+# Easter eggs
+
+There is an Easter egg for you. But this is about resting, spending time with your family, and taking care of yourself. If you are thinking about how to be a better developer, engineer, and so on, remember that you need to take care of yourself first. So, take a break, go outside, and enjoy the time with your family and friends.

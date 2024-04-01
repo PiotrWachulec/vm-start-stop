@@ -206,6 +206,7 @@ The application's configuration have to be handled on the function app level.
 - [Storage considerations for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/storage-considerations?tabs=azure-cli)
 - [What is an Azure landing zone?](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/)
 - [Multiple function projects](https://github.com/Microsoft/vscode-azurefunctions/wiki/Multiple-function-projects)
+- [REST Client VS Code extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
 
 ## Tools
 

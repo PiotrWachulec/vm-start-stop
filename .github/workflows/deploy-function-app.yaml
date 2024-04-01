@@ -5,10 +5,6 @@ on:
     paths:
       - 'src/app/**'
       - '.github/workflows/deploy-function-app.yaml'
-    paths-ignore:
-      - '.vscode/**'
-      - 'docs/**'
-      - 'src/naming-convetion'
   workflow_dispatch:
 
 env:

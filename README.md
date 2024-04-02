@@ -212,6 +212,18 @@ The application's configuration have to be handled on the function app level.
 
 - [Espanso](https://espanso.org/) - Text expander
 
+# Tag design
+
+The tag key is: `VM-START-STOP-SCHEDULE`.
+
+The tag value will be created in the following way:
+```plaintext
+<ON/OFF>;HH:MM-HH:MM;<TIMEZONE>;<MONDAY/TUESDAY/WEDNESDAY/FRIDAY/SATURDAY/SUNDAY/WORKWEEK/WEEK/WEEKEND>
+```
+The denominator character is: '`;`'.
+
+The first part is
+
 # Easter eggs
 
 There is an Easter egg for you. But this is about resting, spending time with your family, and taking care of yourself. If you are thinking about how to be a better developer, engineer, and so on, remember that you need to take care of yourself first. So, take a break, go outside, and enjoy the time with your family and friends.

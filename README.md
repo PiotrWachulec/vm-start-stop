@@ -214,6 +214,8 @@ The application's configuration have to be handled on the function app level.
 
 # Tag design
 
+The tag can be defined at the subscription, resource group, or VM level. The tag key is the same for all levels.
+
 The tag key is: `VM-START-STOP-SCHEDULE`.
 
 The tag value will be created in the following way:
@@ -222,7 +224,13 @@ The tag value will be created in the following way:
 ```
 The denominator character is: '`;`'.
 
-The first part is
+The first part defines whether the tag should apply to the scope. The value can be `ON` or `OFF`. If the value is `ON`, the tag should be evaluated. If the value is `OFF`, the tag should be ignored.
+
+The second part defines the time range. The time range is described in the format `HH:MM-HH:MM`. The time is in the 24-hour format. The - character separates the time range. The time range defines when the VM should be turned on.
+
+The third part defines the timezone. The timezone should be defined in the UTC/STD configuration: [IANA timezone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). The summertime should be applied automatically.
+
+The fourth part defines the days when the VM should be turned on. The value can be: `MONDAY/TUESDAY/WEDNESDAY/FRIDAY/SATURDAY/SUNDAY/WORKWEEK/WEEK/WEEKEND`. The values can be connected by comma, for example: `WEEKEND,MONDAY,TUESDAY`.
 
 # Easter eggs
 

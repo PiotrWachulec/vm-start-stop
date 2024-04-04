@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMStartStop", "VMStartStop\VMStartStop.csproj", "{DA9A30ED-ACB2-4C29-9AC0-422A5A4825E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VMStartStop.Tests", "VMStartStop.Tests\VMStartStop.Tests.csproj", "{303A233D-5C70-484E-9431-EBDA7D04DA15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{DA9A30ED-ACB2-4C29-9AC0-422A5A4825E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA9A30ED-ACB2-4C29-9AC0-422A5A4825E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA9A30ED-ACB2-4C29-9AC0-422A5A4825E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{303A233D-5C70-484E-9431-EBDA7D04DA15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{303A233D-5C70-484E-9431-EBDA7D04DA15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{303A233D-5C70-484E-9431-EBDA7D04DA15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{303A233D-5C70-484E-9431-EBDA7D04DA15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

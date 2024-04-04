@@ -10,7 +10,7 @@ on:
 env:
   AZURE_FUNCTIONAPP_NAME_DEV: 'eit-vms-plc-dev-func-1'
   AZURE_FUNCTIONAPP_NAME_PRD: 'eit-vms-plc-prd-func-1'
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: './src/app'
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: './src/app/VMStartStop'
   DOTNET_VERSION: '8.0.x'
 
 jobs:

@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/app/VMStartStop.csproj",
+                "${workspaceFolder}/src/app/VMStartStop/VMStartStop.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/src/app/VMStartStop.csproj",
+                "${workspaceFolder}/src/app/VMStartStop/VMStartStop.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/src/app/VMStartStop.csproj"
+                "${workspaceFolder}/src/app/VMStartStop/VMStartStop.csproj"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -48,7 +48,7 @@
             "type": "process",
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/src/app"
+                "cwd": "${workspaceFolder}/src/app/VMStartStop"
             }
         },
         {
@@ -67,7 +67,7 @@
             },
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/src/app"
+                "cwd": "${workspaceFolder}/src/app/VMStartStop"
             }
         },
         {
@@ -83,7 +83,7 @@
             "type": "process",
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/src/app"
+                "cwd": "${workspaceFolder}/src/app/VMStartStop"
             }
         },
         {
@@ -100,14 +100,14 @@
             "dependsOn": "clean release (functions)",
             "problemMatcher": "$msCompile",
             "options": {
-                "cwd": "${workspaceFolder}/src/app"
+                "cwd": "${workspaceFolder}/src/app/VMStartStop"
             }
         },
         {
             "type": "func",
             "dependsOn": "build (functions)",
             "options": {
-                "cwd": "${workspaceFolder}/src/app/bin/Debug/net8.0"
+                "cwd": "${workspaceFolder}/src/app/VMStartStop/bin/Debug/net8.0"
             },
             "command": "host start",
             "isBackground": true,

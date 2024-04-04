@@ -1,8 +1,8 @@
 {
-    "azureFunctions.deploySubpath": "src/app/bin/Release/net8.0/publish",
+    "azureFunctions.deploySubpath": "src/app/VMStartStop/bin/Release/net8.0/publish",
     "azureFunctions.projectLanguage": "C#",
     "azureFunctions.projectRuntime": "~4",
     "debug.internalConsoleOptions": "neverOpen",
-    "azureFunctions.projectSubpath": "src/app",
+    "azureFunctions.projectSubpath": "src/app/VMStartStop",
     "azureFunctions.preDeployTask": "publish (functions)"
 }

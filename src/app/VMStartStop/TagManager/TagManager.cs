@@ -9,10 +9,12 @@ namespace MyCo.TagManager
     public class TagManager
     {
         private readonly ILogger _logger;
+        private readonly ITagManagerService _tagManagerService;
 
-        public TagManager(ILoggerFactory loggerFactory)
+        public TagManager(ILoggerFactory loggerFactory, ITagManagerService tagManagerService)
         {
             _logger = loggerFactory.CreateLogger<TagManager>();
+            _tagManagerService = tagManagerService;
         }
 
         private bool IsCurrentTag(string tagValue)
@@ -22,19 +24,21 @@ namespace MyCo.TagManager
             return false;
         }
 
-        // [Function("TagManager")]
-        // public async void Run([TimerTrigger("0 */15 * * * *")] TimerInfo myTimer)
-        // {
-        //     _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+        [Function("TagManager")]
+        public void Run([TimerTrigger("0 */15 * * * *")] TimerInfo myTimer)
+        {
+            _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
-        //     if (myTimer.ScheduleStatus is not null)
-        //     {
-        //         _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
-        //     }
+            if (myTimer.ScheduleStatus is not null)
+            {
+                _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
+            }
 
-        //     ArmClient client = new ArmClient(new DefaultAzureCredential());
+            _tagManagerService.IsCurrentTag("tagValue");
 
-        //     var subscriptions = client.GetSubscriptions();
+            // ArmClient client = new ArmClient(new DefaultAzureCredential());
+
+            // var subscriptions = client.GetSubscriptions();
 
             // foreach (var subscription in subscriptions)
             // {
@@ -67,6 +71,6 @@ namespace MyCo.TagManager
             // {
             //     _logger.LogInformation($"Tag: {tag.Name}, Value: {tag.Value}");
             // }
-        // }
+        }
     }
 }

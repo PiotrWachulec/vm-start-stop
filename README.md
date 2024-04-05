@@ -190,28 +190,6 @@ As the App Configuration service is not required for the current solution and th
 
 The application's configuration have to be handled on the function app level.
 
-# Useful materials
-
-## Links
-
-- [Event storming](https://www.eventstorming.com/)
-- [`.gitignore` & `.git/info/exclude`](https://git-scm.com/docs/gitignore)
-- [OpenID Connect](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc)
-- [GitHub Actions: About security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
-- [Workload identity federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
-- [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
-- [App Registration vs Enterprise Applications](https://learn.microsoft.com/en-us/answers/questions/270680/app-registration-vs-enterprise-applications)
-- [Application and service principal objects in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser)
-- [Products available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/)
-- [Storage considerations for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/storage-considerations?tabs=azure-cli)
-- [What is an Azure landing zone?](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/)
-- [Multiple function projects](https://github.com/Microsoft/vscode-azurefunctions/wiki/Multiple-function-projects)
-- [REST Client VS Code extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
-
-## Tools
-
-- [Espanso](https://espanso.org/) - Text expander
-
 # Tag design
 
 The tag can be defined at the subscription, resource group, or VM level. The tag key is the same for all levels.
@@ -235,3 +213,30 @@ The fourth part defines the days when the VM should be turned on. The value can 
 # Easter eggs
 
 There is an Easter egg for you. But this is about resting, spending time with your family, and taking care of yourself. If you are thinking about how to be a better developer, engineer, and so on, remember that you need to take care of yourself first. So, take a break, go outside, and enjoy the time with your family and friends.
+
+# Useful materials
+
+## Links
+
+- [Event storming](https://www.eventstorming.com/)
+- [`.gitignore` & `.git/info/exclude`](https://git-scm.com/docs/gitignore)
+- [OpenID Connect](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc)
+- [GitHub Actions: About security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect)
+- [Workload identity federation](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation)
+- [Workflow syntax for GitHub Actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- [App Registration vs Enterprise Applications](https://learn.microsoft.com/en-us/answers/questions/270680/app-registration-vs-enterprise-applications)
+- [Application and service principal objects in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser)
+- [Products available by region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/)
+- [Storage considerations for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/storage-considerations?tabs=azure-cli)
+- [What is an Azure landing zone?](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/)
+- [Multiple function projects](https://github.com/Microsoft/vscode-azurefunctions/wiki/Multiple-function-projects)
+- [REST Client VS Code extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)
+- [Quickstart: Create a C# function in Azure from the command line](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp?tabs=macos%2Cazure-cli)
+- [Azure Funcitions: Continuous delivery by using GitHub Actions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-how-to-github-actions?tabs=windows%2Cdotnet&pivots=method-template)
+- [Azure SDK for .NET overview](https://learn.microsoft.com/en-us/dotnet/azure/sdk/azure-sdk-for-dotnet)
+- [Azure Functions - Part 2 - Unit and Integration Testing](https://techcommunity.microsoft.com/t5/fasttrack-for-azure/azure-functions-part-2-unit-and-integration-testing/ba-p/3769764)
+- [Unit testing C# with NUnit and .NET Core](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit)
+
+## Tools
+
+- [Espanso](https://espanso.org/) - Text expander

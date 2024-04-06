@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using MyCo.VMStartStop;
 
 namespace MyCo.TagManager
 {
@@ -11,7 +12,7 @@ namespace MyCo.TagManager
             _logger = loggerFactory.CreateLogger<TagManagerService>();
         }
 
-        bool ITagManagerService.IsCurrentTag(string tagValue)
+        public VMStates IsCurrentTag(string tagValue)
         {
             throw new NotImplementedException();
         }

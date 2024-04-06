@@ -1,7 +1,9 @@
+using MyCo.VMStartStop;
+
 namespace MyCo.TagManager
 {
     public interface ITagManagerService
     {
-        bool IsCurrentTag(string tagValue);
+        public VMStates IsCurrentTag(string tagValue);
     }
 }

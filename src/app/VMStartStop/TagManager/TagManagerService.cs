@@ -14,6 +14,14 @@ namespace MyCo.TagManager
 
         public VMStates IsCurrentTag(string tagValue)
         {
+            string[] tagValues = tagValue.Split(";");
+
+            if (!tagValues[0].Equals("ON"))
+            {
+                _logger.LogInformation("Tag contains OFF, omitting VM");
+                return VMStates.Omit;
+            }
+
             throw new NotImplementedException();
         }
     }

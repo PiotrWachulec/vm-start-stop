@@ -238,6 +238,7 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [Unit testing C# with NUnit and .NET Core](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit)
 - [Guide for running C# Azure Functions in the isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide?tabs=windows#dependency-injection)
 - [Names of Classes, Structs, and Interfaces](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces)
+- [Testing with C# Dev Kit](https://code.visualstudio.com/docs/csharp/testing)
 
 ## Tools
 

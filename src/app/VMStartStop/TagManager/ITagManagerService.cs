@@ -4,6 +4,6 @@ namespace MyCo.TagManager
 {
     public interface ITagManagerService
     {
-        public VMStates IsCurrentTag(string tagValue);
+        public VMStates IsCurrentTag(VMStartStopTagValue tagValue);
     }
 }

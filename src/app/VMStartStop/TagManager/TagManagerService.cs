@@ -12,11 +12,9 @@ namespace MyCo.TagManager
             _logger = loggerFactory.CreateLogger<TagManagerService>();
         }
 
-        public VMStates IsCurrentTag(string tagValue)
+        public VMStates IsCurrentTag(VMStartStopTagValue tagValue)
         {
-            string[] tagValues = tagValue.Split(";");
-
-            if (!tagValues[0].Equals("ON"))
+            if (!tagValue.IsOn)
             {
                 _logger.LogInformation("Tag contains OFF, omitting VM");
                 return VMStates.Omit;

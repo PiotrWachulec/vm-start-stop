@@ -23,7 +23,7 @@ public class TagManagerServiceTests
     public void ShouldReturnOmit_WhenTagContainsOff()
     {
         // Arrange
-        string tagValue = "OFF;08:00-16:00;CET;WEEK";
+        var tagValue = new VMStartStopTagValue("OFF;08:00-16:00;CET;WEEK");
 
         // Act
         var result = _tagManagerService.IsCurrentTag(tagValue);
@@ -36,7 +36,7 @@ public class TagManagerServiceTests
     public void ShouldNotReturnOmit_WhenTagContainsOn()
     {
         // Arrange
-        string tagValue = "OFF;08:00-16:00;CET;WEEK";
+        var tagValue = new VMStartStopTagValue("ON;08:00-16:00;CET;WEEK");
 
         // Act
         var result = _tagManagerService.IsCurrentTag(tagValue);
@@ -49,7 +49,7 @@ public class TagManagerServiceTests
     public void ShouldReturnOmit_WhenTagNotContainsOn()
     {
         // Arrange
-        string tagValue = "OFF;08:00-16:00;CET;WEEK";
+        var tagValue = new VMStartStopTagValue("OFF;08:00-16:00;CET;WEEK");
 
         // Act
         var result = _tagManagerService.IsCurrentTag(tagValue);

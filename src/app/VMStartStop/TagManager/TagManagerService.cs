@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Azure.ResourceManager;
 using Microsoft.Extensions.Logging;
 using MyCo.VMStartStop;
 
@@ -21,6 +23,13 @@ namespace MyCo.TagManager
             }
 
             throw new NotImplementedException();
+        }
+
+        public void GetTagsFromAzure()
+        {
+            ArmClient armClient = new ArmClient(new DefaultAzureCredential());
+
+            var subscriptions = armClient.GetSubscriptions();
         }
     }
 }

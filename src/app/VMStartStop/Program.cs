@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MyCo.TagManager;
@@ -7,6 +9,10 @@ var host = new HostBuilder()
     .ConfigureServices(services =>
     {
         services.AddTransient<ITagManagerService, TagManagerService>();
+        services.AddAzureClients(builder =>
+        {
+            builder.UseCredential(new DefaultAzureCredential());
+        });
     })
     .Build();
 

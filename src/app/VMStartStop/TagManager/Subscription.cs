@@ -1,6 +1,6 @@
 namespace MyCo.TagManager;
 
-internal class SubscriptionId
+public class SubscriptionId
 {
     public string Id { get; }
 
@@ -12,12 +12,12 @@ internal class SubscriptionId
 
 public class Subscription
 {
-    public readonly SubscriptionId { get; }
-    public readonly VMStartStopTagValue { get; }
+    public SubscriptionId Id { get; }
+    public VMStartStopTagValue TagValue { get; }
 
     public Subscription(SubscriptionId subscriptionId, VMStartStopTagValue tagValue)
     {
-        SubscriptionId = subscriptionId;
-        VMStartStopTagValue = tagValue;
+        Id = subscriptionId;
+        TagValue = tagValue;
     }
 }

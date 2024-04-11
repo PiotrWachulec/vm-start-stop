@@ -1,6 +1,6 @@
 using Azure.Identity;
-using Azure.ResourceManager;
 using Microsoft.Extensions.Logging;
+using Azure.ResourceManager;
 using MyCo.VMStartStop;
 
 namespace MyCo.TagManager
@@ -44,14 +44,24 @@ namespace MyCo.TagManager
 
             var count = subscriptions.Count();
 
-            foreach (var sub in subscriptions)
+            foreach (var subscription in subscriptions)
             {
-
-                var resources = await sub.GetGenericResourcesAsync();
-                sub.Data.Tags.ContainsKey("VMStartStop");
+                if (subscription.Data.Tags.ContainsKey("VMStartStop"))
+                {
+                    _logger.LogInformation($"Subscription {subscription.Data.Id} has VMStartStop tag");
+                }
+                else
+                {
+                    _logger.LogInformation($"Subscription {subscription.Data.Id} does not have VMStartStop tag");
+                }
             }
 
             _logger.LogInformation($"Found {count} subscriptions");
+        }
+
+        VMStates ITagManagerService.IsCurrentTag(VMStartStopTagValue tagValue)
+        {
+            throw new NotImplementedException();
         }
     }
 }

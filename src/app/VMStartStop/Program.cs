@@ -9,6 +9,7 @@ var host = new HostBuilder()
     .ConfigureServices(services =>
     {
         services.AddTransient<ITagManagerService, TagManagerService>();
+        services.AddTransient<ITagsRepository, TagsRepository>();
         services.AddAzureClients(builder =>
         {
             builder.UseCredential(new DefaultAzureCredential());

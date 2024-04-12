@@ -8,10 +8,12 @@ namespace MyCo.TagManager
     public class TagManagerService : ITagManagerService
     {
         private readonly ILogger _logger;
+        private readonly ITagsRepository _tagsRepository;
 
-        public TagManagerService(ILoggerFactory loggerFactory)
+        public TagManagerService(ILoggerFactory loggerFactory, ITagsRepository tagsRepository)
         {
             _logger = loggerFactory.CreateLogger<TagManagerService>();
+            _tagsRepository = tagsRepository;
         }
 
         public VMStates IsCurrentTag(VMStartStopTagValue tagValue)
@@ -38,25 +40,7 @@ namespace MyCo.TagManager
             // 5. Get all VMs
             // 6. Check if the VM has the VMStartStop tag and switch them if needed
 
-            ArmClient armClient = new ArmClient(new DefaultAzureCredential());
-
-            var subscriptions = armClient.GetSubscriptions();
-
-            var count = subscriptions.Count();
-
-            foreach (var subscription in subscriptions)
-            {
-                if (subscription.Data.Tags.ContainsKey("VMStartStop"))
-                {
-                    _logger.LogInformation($"Subscription {subscription.Data.Id} has VMStartStop tag");
-                }
-                else
-                {
-                    _logger.LogInformation($"Subscription {subscription.Data.Id} does not have VMStartStop tag");
-                }
-            }
-
-            _logger.LogInformation($"Found {count} subscriptions");
+            var subscriptions = await _tagsRepository.GetTagsFromSubscriptions();
         }
 
         VMStates ITagManagerService.IsCurrentTag(VMStartStopTagValue tagValue)

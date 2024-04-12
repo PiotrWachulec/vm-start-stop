@@ -239,6 +239,7 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [Guide for running C# Azure Functions in the isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide?tabs=windows#dependency-injection)
 - [Names of Classes, Structs, and Interfaces](https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/names-of-classes-structs-and-interfaces)
 - [Testing with C# Dev Kit](https://code.visualstudio.com/docs/csharp/testing)
+- [Design the infrastructure persistence layer](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design)
 
 ## Tools
 

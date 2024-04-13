@@ -16,7 +16,8 @@ public class TagManagerServiceTests
     {
         var serviceProvider = new ServiceCollection().AddLogging().BuildServiceProvider();
         var logger = serviceProvider.GetService<ILoggerFactory>();
-        _tagManagerService = new TagManagerService(logger);
+        var tagsRepository = new TagsRepository(logger);
+        _tagManagerService = new TagManagerService(logger, tagsRepository);
     }
 
     [Test]

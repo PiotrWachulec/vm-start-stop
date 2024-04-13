@@ -1,7 +1,4 @@
-@url = http://localhost:7071/
-
-GET {{url}}/api/HttpExample
+@url = http://localhost:7071
 
 ###
-
-GET {{url}}/admin/functions/TagManager
+GET {{url}}/api/HttpExample

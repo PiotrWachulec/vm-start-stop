@@ -1,7 +1,11 @@
+using Azure.ResourceManager.Resources;
+
 namespace MyCo.TagManager
 {
     public interface ITagsRepository
     {
-        Task<IEnumerable<Subscription>> GetTagsFromSubscriptions();
+        IEnumerable<Subscription> GetTagsFromSubscriptions();
+        IEnumerable<ResourceGroup> GetTagsFromResourceGroups();
+        IEnumerable<ResourceGroup> GetTagsFromResourceGroupsInSubscription(SubscriptionResource subscription);
     }
 }

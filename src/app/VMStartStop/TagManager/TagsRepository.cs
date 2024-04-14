@@ -93,4 +93,9 @@ public class TagsRepository : ITagsRepository
 
         return subscriptionsWithTags;
     }
+
+    public IEnumerable<VirtualMachine> GetTagsFromVirtualMachinesInResourceGroup()
+    {
+        throw new NotImplementedException();
+    }
 }

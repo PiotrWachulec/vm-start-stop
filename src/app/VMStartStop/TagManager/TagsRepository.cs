@@ -19,7 +19,20 @@ public class TagsRepository : ITagsRepository
 
     public IEnumerable<ResourceGroup> GetTagsFromResourceGroups()
     {
-        throw new NotImplementedException();
+        var subscriptions = _armClient.GetSubscriptions();
+
+        var count = subscriptions.Count();
+
+        _logger.LogInformation($"Found {count} subscriptions");
+
+        IEnumerable<ResourceGroup> resourceGroupWithTags = [];
+
+        foreach (var subscription in subscriptions)
+        {
+            resourceGroupWithTags = resourceGroupWithTags.Concat(GetTagsFromResourceGroupsInSubscription(subscription));
+        }
+
+        return resourceGroupWithTags;
     }
 
     public IEnumerable<ResourceGroup> GetTagsFromResourceGroupsInSubscription(SubscriptionResource subscription)

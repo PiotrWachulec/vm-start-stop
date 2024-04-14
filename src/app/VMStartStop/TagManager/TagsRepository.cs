@@ -39,7 +39,7 @@ public class TagsRepository : ITagsRepository
     {
         var resourceGroups = subscription.GetResourceGroups();
         
-        Collection<ResourceGroup> resourceGroupWithTags = new Collection<ResourceGroup>();
+        Collection<ResourceGroup> resourceGroupWithTags = [];
 
         foreach (var resourceGroup in resourceGroups)
         {
@@ -71,7 +71,7 @@ public class TagsRepository : ITagsRepository
 
         _logger.LogInformation($"Found {count} subscriptions");
 
-        Collection<Subscription> subscriptionsWithTags = new Collection<Subscription>();
+        Collection<Subscription> subscriptionsWithTags = [];
 
         foreach (var subscription in subscriptions)
         {

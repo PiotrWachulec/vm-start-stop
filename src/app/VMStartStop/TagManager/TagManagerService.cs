@@ -27,7 +27,7 @@ namespace MyCo.TagManager
             throw new NotImplementedException();
         }
 
-        public void GetTagsFromAzure()
+        public async Task GetTagsFromAzure()
         {
             // 1. Get all subscriptions
             // 2. Check if the subscription has the VMStartStop tag
@@ -42,6 +42,7 @@ namespace MyCo.TagManager
 
             var subscriptions = _tagsRepository.GetTagsFromSubscriptions();
             var resourceGroups = _tagsRepository.GetTagsFromResourceGroups();
+            var vms = await _tagsRepository.GetTagsFromVirtualMachines();
         }
 
         VMStates ITagManagerService.IsCurrentTag(VMStartStopTagValue tagValue)

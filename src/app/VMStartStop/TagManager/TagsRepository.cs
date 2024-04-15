@@ -95,7 +95,7 @@ public class TagsRepository : ITagsRepository
         return subscriptionsWithTags;
     }
 
-    public async Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachinesInResourceGroup(SubscriptionResource subscription)
+    public async Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachinesInSubscription(SubscriptionResource subscription)
     {
         Collection<VirtualMachine> virtualMachinesWithTags = [];
 

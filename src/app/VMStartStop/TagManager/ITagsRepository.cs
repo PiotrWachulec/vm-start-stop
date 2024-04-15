@@ -7,6 +7,6 @@ namespace MyCo.TagManager
         IEnumerable<Subscription> GetTagsFromSubscriptions();
         IEnumerable<ResourceGroup> GetTagsFromResourceGroups();
         IEnumerable<ResourceGroup> GetTagsFromResourceGroupsInSubscription(SubscriptionResource subscription);
-        IEnumerable<VirtualMachine> GetTagsFromVirtualMachinesInResourceGroup();
+        Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachinesInResourceGroup(SubscriptionResource subscription);
     }
 }

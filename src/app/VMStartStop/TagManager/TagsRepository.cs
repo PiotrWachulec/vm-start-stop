@@ -95,6 +95,24 @@ public class TagsRepository : ITagsRepository
         return subscriptionsWithTags;
     }
 
+    public async Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachines()
+    {
+        var subscriptions = _armClient.GetSubscriptions();
+
+        var count = subscriptions.Count();
+
+        _logger.LogInformation($"Found {count} subscriptions");
+
+        IEnumerable<VirtualMachine> virtualMachinesWithTags = [];
+
+        foreach (var subscription in subscriptions)
+        {
+            virtualMachinesWithTags = virtualMachinesWithTags.Concat(await GetTagsFromVirtualMachinesInSubscription(subscription));
+        }
+
+        return virtualMachinesWithTags;
+    }
+
     public async Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachinesInSubscription(SubscriptionResource subscription)
     {
         Collection<VirtualMachine> virtualMachinesWithTags = [];

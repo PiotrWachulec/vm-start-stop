@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using Azure.Identity;
 using Azure.ResourceManager;
 using Azure.ResourceManager.Resources;
+using Azure.ResourceManager.Compute;
 using Microsoft.Extensions.Logging;
 
 namespace MyCo.TagManager;
@@ -38,7 +39,7 @@ public class TagsRepository : ITagsRepository
     public IEnumerable<ResourceGroup> GetTagsFromResourceGroupsInSubscription(SubscriptionResource subscription)
     {
         var resourceGroups = subscription.GetResourceGroups();
-        
+
         Collection<ResourceGroup> resourceGroupWithTags = [];
 
         foreach (var resourceGroup in resourceGroups)
@@ -94,8 +95,29 @@ public class TagsRepository : ITagsRepository
         return subscriptionsWithTags;
     }
 
-    public IEnumerable<VirtualMachine> GetTagsFromVirtualMachinesInResourceGroup()
+    public async Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachinesInResourceGroup(SubscriptionResource subscription)
     {
-        throw new NotImplementedException();
+        Collection<VirtualMachine> virtualMachinesWithTags = [];
+
+        await foreach (VirtualMachineResource virtualMachine in subscription.GetVirtualMachinesAsync())
+        {
+            if (virtualMachine.Data.Tags.ContainsKey("VM-START-STOP-SCHEDULE"))
+            {
+                _logger.LogInformation($"Virtual machine {virtualMachine.Data.Id} has VMStartStop tag");
+                virtualMachinesWithTags.Add(
+                    new VirtualMachine(
+                        virtualMachine.Data.Name,
+                        new SubscriptionId(subscription.Data.Id),
+                        new VMStartStopTagValue(virtualMachine.Data.Tags["VM-START-STOP-SCHEDULE"])
+                    )
+                );
+            }
+            else
+            {
+                _logger.LogInformation($"Virtual machine {virtualMachine.Data.Id} does not have VMStartStop tag");
+            }
+        }
+
+        return virtualMachinesWithTags;
     }
 }

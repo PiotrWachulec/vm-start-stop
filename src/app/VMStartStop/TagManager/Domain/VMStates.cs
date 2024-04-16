@@ -1,4 +1,4 @@
-namespace MyCo.VMStartStop.Domain;
+namespace MyCo.TagManager.Domain;
 
 public enum VMStates
 {

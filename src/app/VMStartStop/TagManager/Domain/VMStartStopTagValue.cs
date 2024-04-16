@@ -1,4 +1,4 @@
-namespace MyCo.TagManager;
+namespace MyCo.TagManager.Domain;
 
 public class VMStartStopTagValue
 {

@@ -4,8 +4,9 @@ using Azure.ResourceManager;
 using Azure.ResourceManager.Resources;
 using Azure.ResourceManager.Compute;
 using Microsoft.Extensions.Logging;
+using MyCo.TagManager.Domain;
 
-namespace MyCo.TagManager;
+namespace MyCo.TagManager.Infrastrucutre;
 
 public class TagsRepository : ITagsRepository
 {

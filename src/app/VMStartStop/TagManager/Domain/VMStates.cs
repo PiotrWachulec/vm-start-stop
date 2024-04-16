@@ -1,11 +1,10 @@
-namespace MyCo.VMStartStop
+namespace MyCo.VMStartStop.Domain;
+
+public enum VMStates
 {
-    public enum VMStates
-    {
-        Omit,
-        Stopped,
-        TurningOn,
-        Running,
-        TurningOff
-    }
+    Omit,
+    Stopped,
+    TurningOn,
+    Running,
+    TurningOff
 }

@@ -1,13 +1,12 @@
 using Azure.ResourceManager.Resources;
 
-namespace MyCo.TagManager
+namespace MyCo.TagManager.Domain;
+
+public interface ITagsRepository
 {
-    public interface ITagsRepository
-    {
-        IEnumerable<Subscription> GetTagsFromSubscriptions();
-        IEnumerable<ResourceGroup> GetTagsFromResourceGroups();
-        IEnumerable<ResourceGroup> GetTagsFromResourceGroupsInSubscription(SubscriptionResource subscription);
-        Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachines();
-        Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachinesInSubscription(SubscriptionResource subscription);
-    }
+    IEnumerable<Subscription> GetTagsFromSubscriptions();
+    IEnumerable<ResourceGroup> GetTagsFromResourceGroups();
+    IEnumerable<ResourceGroup> GetTagsFromResourceGroupsInSubscription(SubscriptionResource subscription);
+    Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachines();
+    Task<IEnumerable<VirtualMachine>> GetTagsFromVirtualMachinesInSubscription(SubscriptionResource subscription);
 }

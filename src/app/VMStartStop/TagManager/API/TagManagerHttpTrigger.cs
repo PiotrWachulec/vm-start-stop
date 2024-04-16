@@ -6,15 +6,15 @@ using MyCo.TagManager.Application;
 
 namespace MyCo.TagManager.API;
 
-public class HttpExample
+public class TagManagerHttpTrigger
 {
     private readonly ILogger _logger;
     private readonly ITagManagerService _tagManagerService;
 
-    public HttpExample(ILoggerFactory loggerFactory,
+    public TagManagerHttpTrigger(ILoggerFactory loggerFactory,
         ITagManagerService tagManagerService)
     {
-        _logger = loggerFactory.CreateLogger<HttpExample>();
+        _logger = loggerFactory.CreateLogger<TagManagerHttpTrigger>();
         _tagManagerService = tagManagerService;
     }
 

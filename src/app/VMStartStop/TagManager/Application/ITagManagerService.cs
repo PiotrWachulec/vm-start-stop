@@ -1,10 +1,9 @@
-using MyCo.VMStartStop;
+using MyCo.TagManager.Domain;
 
-namespace MyCo.TagManager
+namespace MyCo.TagManager.Application;
+
+public interface ITagManagerService
 {
-    public interface ITagManagerService
-    {
-        public VMStates IsCurrentTag(VMStartStopTagValue tagValue);
-        public Task GetTagsFromAzure();
-    }
+    public VMStates IsCurrentTag(VMStartStopTagValue tagValue);
+    public Task GetTagsFromAzure();
 }

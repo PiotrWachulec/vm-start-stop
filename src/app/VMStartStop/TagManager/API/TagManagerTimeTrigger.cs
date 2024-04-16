@@ -4,15 +4,15 @@ using MyCo.TagManager.Application;
 
 namespace MyCo.TagManager.API;
 
-public class TagManager
+public class TagManagerTimeTrigger
 {
     private readonly ILogger _logger;
     private readonly ITagManagerService _tagManagerService;
 
     public 
-    TagManager(ILoggerFactory loggerFactory, ITagManagerService tagManagerService)
+    TagManagerTimeTrigger(ILoggerFactory loggerFactory, ITagManagerService tagManagerService)
     {
-        _logger = loggerFactory.CreateLogger<TagManager>();
+        _logger = loggerFactory.CreateLogger<TagManagerTimeTrigger>();
         _tagManagerService = tagManagerService;
     }
 

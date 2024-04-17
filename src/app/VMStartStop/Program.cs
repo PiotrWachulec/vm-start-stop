@@ -16,6 +16,8 @@ var host = new HostBuilder()
         {
             builder.UseCredential(new DefaultAzureCredential());
         });
+
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
     })
     .Build();
 

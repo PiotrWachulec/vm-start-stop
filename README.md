@@ -243,6 +243,7 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [Pagination with the Azure SDK for .NET](https://learn.microsoft.com/en-us/dotnet/azure/sdk/pagination)
 - [VirtualMachineCollection.GetAll Method](https://learn.microsoft.com/en-us/dotnet/api/azure.resourcemanager.compute.virtualmachinecollection.getall?view=azure-dotnet#azure-resourcemanager-compute-virtualmachinecollection-getall(system-string-system-nullable((azure-resourcemanager-compute-models-getvirtualmachineexpandtype))-system-threading-cancellationtoken))
 - [Services in DDD finally explained](https://medium.com/codex/services-in-ddd-finally-explained-230b5f8a199c)
+- [MediatR](https://github.com/jbogard/MediatR)
 
 ## Tools
 

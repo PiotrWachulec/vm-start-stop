@@ -2,7 +2,9 @@ using Azure.Identity;
 using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MyCo.TagManager;
+using MyCo.TagManager.Application;
+using MyCo.TagManager.Domain;
+using MyCo.TagManager.Infrastrucutre;
 
 var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults()

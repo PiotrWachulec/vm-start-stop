@@ -12,7 +12,7 @@ public class TagManagerHttpTrigger
     private readonly ILogger _logger;
     private readonly IMediator _mediator;
 
-    public TagManagerHttpTrigger(ILoggerFactory loggerFactory, Mediator mediator)
+    public TagManagerHttpTrigger(ILoggerFactory loggerFactory, IMediator mediator)
     {
         _logger = loggerFactory.CreateLogger<TagManagerHttpTrigger>();
         _mediator = mediator;

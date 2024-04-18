@@ -79,6 +79,10 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'
           value: applicationInsights.properties.InstrumentationKey
         }
+        {
+          name: 'VM_START_STOP_TAG_NAME'
+          value: 'VM-START-STOP-SCHEDULE'
+        }
       ]
       ftpsState: 'FtpsOnly'
       minTlsVersion: '1.2'

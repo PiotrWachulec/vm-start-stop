@@ -42,9 +42,4 @@ public class TagManagerService : ITagManagerService
         var resourceGroups = _tagsRepository.GetTagsFromResourceGroups();
         var vms = await _tagsRepository.GetTagsFromVirtualMachines();
     }
-
-    VMStates ITagManagerService.IsCurrentTag(VMStartStopTagValue tagValue)
-    {
-        throw new NotImplementedException();
-    }
 }

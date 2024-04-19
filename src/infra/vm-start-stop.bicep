@@ -83,6 +83,10 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
           name: 'VM_START_STOP_TAG_NAME'
           value: 'VM-START-STOP-SCHEDULE'
         }
+        {
+          name: 'RunOnStartup'
+          value: 'false'
+        }
       ]
       ftpsState: 'FtpsOnly'
       minTlsVersion: '1.2'

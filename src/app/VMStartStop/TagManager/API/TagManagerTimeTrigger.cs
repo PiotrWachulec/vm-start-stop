@@ -23,9 +23,11 @@ public class TagManagerTimeTrigger
     }
 
     [Function("TagManager")]
-    public void Run([TimerTrigger("0 */15 * * * *")] TimerInfo myTimer)
+    public void Run([TimerTrigger("0 */1 * * * *")] TimerInfo myTimer)
     {
         _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+
+        _logger.LogInformation($"Log triggered at: {myTimer.ScheduleStatus.Last}");
 
         _logger.LogInformation("Processing tags");
         _mediator.Send(new ProcessTags());

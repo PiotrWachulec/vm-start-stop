@@ -25,6 +25,8 @@ param logAnalyticsWorkspaceName string
 @description('Resource group name where LAW is placed')
 param logAnalyticsWorkspaceResourceGroupName string
 
+var timeTriggerServiceBusQueueName = 'time-trigger-service-bus-queue'
+
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
   location: location
@@ -116,6 +118,11 @@ resource serviceBus 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' = {
   sku: {
     name: 'Basic'
   }
+}
+
+resource serviceBusQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
+  parent: serviceBus
+  name: timeTriggerServiceBusQueueName
 }
 
 resource law 'Microsoft.OperationalInsights/workspaces@2023-09-01' existing = {

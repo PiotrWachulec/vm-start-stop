@@ -26,6 +26,8 @@ namespace MyCo.TagManager
             _logger.LogInformation("Message Body: {body}", message.Body);
             _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
 
+            await _tagManagerService.GetTagsFromAzure();
+
             // Complete the message
             await messageActions.CompleteMessageAsync(message);
         }

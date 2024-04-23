@@ -89,6 +89,10 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
           name: 'RunOnStartup'
           value: 'false'
         }
+        {
+          name: 'ServiceBusConnection'
+          value: serviceBusQueuePolicy.listKeys().primaryConnectionString
+        }
       ]
       ftpsState: 'FtpsOnly'
       minTlsVersion: '1.2'
@@ -124,6 +128,15 @@ resource serviceBusQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-prev
   parent: serviceBus
   name: timeTriggerServiceBusQueueName
 }
+
+resource serviceBusQueuePolicy 'Microsoft.ServiceBus/namespaces/queues/authorizationRules@2022-10-01-preview' = {
+  parent: serviceBusQueue
+  name: 'ReadQueuePolicy'
+  properties: {
+    rights: [
+      'Listen'
+    ]
+  }
 
 resource law 'Microsoft.OperationalInsights/workspaces@2023-09-01' existing = {
   name: logAnalyticsWorkspaceName

@@ -90,7 +90,7 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
           value: 'false'
         }
         {
-          name: 'ServiceBusConnection'
+          name: 'ReadServiceBusConnection'
           value: serviceBusQueuePolicy.listKeys().primaryConnectionString
         }
       ]

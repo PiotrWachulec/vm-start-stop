@@ -18,7 +18,7 @@ namespace MyCo.TagManager
 
         [Function(nameof(ServiceBusQueueTrigger1))]
         public async Task Run(
-            [ServiceBusTrigger("time-trigger-service-bus-queue", Connection = "ServiceBusConnection")]
+            [ServiceBusTrigger("time-trigger-service-bus-queue", Connection = "ReadServiceBusConnection")]
             ServiceBusReceivedMessage message,
             ServiceBusMessageActions messageActions)
         {

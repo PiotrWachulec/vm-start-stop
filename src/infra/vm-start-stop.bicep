@@ -137,6 +137,7 @@ resource serviceBusQueuePolicy 'Microsoft.ServiceBus/namespaces/queues/authoriza
       'Listen'
     ]
   }
+}
 
 resource law 'Microsoft.OperationalInsights/workspaces@2023-09-01' existing = {
   name: logAnalyticsWorkspaceName

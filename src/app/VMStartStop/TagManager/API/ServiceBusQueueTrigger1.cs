@@ -1,15 +1,18 @@
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using MyCo.TagManager.Application;
 
 namespace MyCo.TagManager
 {
     public class ServiceBusQueueTrigger1
     {
         private readonly ILogger<ServiceBusQueueTrigger1> _logger;
+        private readonly ITagManagerService _tagManagerService;
 
-        public ServiceBusQueueTrigger1(ILogger<ServiceBusQueueTrigger1> logger)
+        public ServiceBusQueueTrigger1(ITagManagerService tagManagerService, ILogger<ServiceBusQueueTrigger1> logger)
         {
+            _tagManagerService = tagManagerService;
             _logger = logger;
         }
 

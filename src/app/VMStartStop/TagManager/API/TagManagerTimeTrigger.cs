@@ -2,6 +2,7 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using MyCo.TagManager.Application;
 using MyCo.TagManager.Application.Commands;
+using System.Text.Json;
 
 namespace MyCo.TagManager.API;
 
@@ -17,7 +18,8 @@ public class TagManagerTimeTrigger
     }
 
     [Function("TagManager")]
-    public void Run([TimerTrigger("0 */15 * * * *")] TimerInfo myTimer)
+    [ServiceBusOutput("time-trigger-service-bus-queue", Connection = "WriteServiceBusConnection")]
+    public string Run([TimerTrigger("0 */15 * * * *")] TimerInfo myTimer)
     {
         _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
@@ -30,5 +32,7 @@ public class TagManagerTimeTrigger
         {
             _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
         }
+
+        return JsonSerializer.Serialize(new ProcessTags());
     }
 }

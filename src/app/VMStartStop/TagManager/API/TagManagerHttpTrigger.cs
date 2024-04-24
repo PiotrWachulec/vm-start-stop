@@ -1,5 +1,4 @@
 using System.Net;
-using MediatR;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -10,12 +9,10 @@ namespace MyCo.TagManager.API;
 public class TagManagerHttpTrigger
 {
     private readonly ILogger _logger;
-    private readonly IMediator _mediator;
 
-    public TagManagerHttpTrigger(ILoggerFactory loggerFactory, IMediator mediator)
+    public TagManagerHttpTrigger(ILoggerFactory loggerFactory)
     {
         _logger = loggerFactory.CreateLogger<TagManagerHttpTrigger>();
-        _mediator = mediator;
     }
 
     [Function("HttpExample")]
@@ -23,7 +20,7 @@ public class TagManagerHttpTrigger
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
 
-        _mediator.Send(new ProcessTags());
+        // _mediator.Send(new ProcessTags());
 
         var response = req.CreateResponse(HttpStatusCode.Accepted);
         response.Headers.Add("Content-Type", "text/plain; charset=utf-8");

@@ -91,7 +91,11 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
         }
         {
           name: 'ReadServiceBusConnection'
-          value: serviceBusQueuePolicy.listKeys().primaryConnectionString
+          value: serviceBusReadQueuePolicy.listKeys().primaryConnectionString
+        }
+        {
+          name: 'WriteServiceBusConnection'
+          value: serviceBusWriteQueuePolicy.listKeys().primaryConnectionString
         }
       ]
       ftpsState: 'FtpsOnly'
@@ -129,12 +133,22 @@ resource serviceBusQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-prev
   name: timeTriggerServiceBusQueueName
 }
 
-resource serviceBusQueuePolicy 'Microsoft.ServiceBus/namespaces/queues/authorizationRules@2022-10-01-preview' = {
+resource serviceBusReadQueuePolicy 'Microsoft.ServiceBus/namespaces/queues/authorizationRules@2022-10-01-preview' = {
   parent: serviceBusQueue
   name: 'ReadQueuePolicy'
   properties: {
     rights: [
       'Listen'
+    ]
+  }
+}
+
+resource serviceBusWriteQueuePolicy 'Microsoft.ServiceBus/namespaces/queues/authorizationRules@2022-10-01-preview' = {
+  parent: serviceBusQueue
+  name: 'WriteQueuePolicy'
+  properties: {
+    rights: [
+      'Send'
     ]
   }
 }

@@ -25,6 +25,9 @@ param logAnalyticsWorkspaceName string
 @description('Resource group name where LAW is placed')
 param logAnalyticsWorkspaceResourceGroupName string
 
+@description('Name of the managed identity')
+param managedIdentityName string
+
 var timeTriggerServiceBusQueueName = 'time-trigger-service-bus-queue'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
@@ -105,6 +108,17 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
     }
     httpsOnly: true
   }
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${managedIdentity.id}': {}
+    }
+  }
+}
+
+resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-07-31-preview' = {
+  name: managedIdentityName
+  location: location
 }
 
 resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {

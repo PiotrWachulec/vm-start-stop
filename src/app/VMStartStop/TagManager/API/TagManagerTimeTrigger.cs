@@ -16,7 +16,7 @@ public class TagManagerTimeTrigger
 
     [Function("TagManager")]
     [ServiceBusOutput("time-trigger-service-bus-queue", Connection = "WriteServiceBusConnection")]
-    public string Run([TimerTrigger("0 */15 * * * *")] TimerInfo myTimer)
+    public string Run([TimerTrigger("0 */15 * * * *", RunOnStartup = false)] TimerInfo myTimer)
     {
         _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 

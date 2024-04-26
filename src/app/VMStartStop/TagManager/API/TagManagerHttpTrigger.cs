@@ -7,16 +7,16 @@ using MyCo.TagManager.Application.Commands;
 
 namespace MyCo.TagManager.API;
 
-public class TagProcessorHttpTrigger
+public class TagManagerHttpTrigger
 {
     private readonly ILogger _logger;
 
-    public TagProcessorHttpTrigger(ILoggerFactory loggerFactory)
+    public TagManagerHttpTrigger(ILoggerFactory loggerFactory)
     {
-        _logger = loggerFactory.CreateLogger<TagProcessorHttpTrigger>();
+        _logger = loggerFactory.CreateLogger<TagManagerHttpTrigger>();
     }
 
-    [Function(nameof(TagProcessorHttpTrigger))]
+    [Function(nameof(TagManagerHttpTrigger))]
     public OutputType Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");

@@ -5,16 +5,16 @@ using System.Text.Json;
 
 namespace MyCo.TagManager.API;
 
-public class TagProcessorTimeTrigger
+public class TagManagerTimeTrigger
 {
     private readonly ILogger _logger;
 
-    public TagProcessorTimeTrigger(ILoggerFactory loggerFactory)
+    public TagManagerTimeTrigger(ILoggerFactory loggerFactory)
     {
-        _logger = loggerFactory.CreateLogger<TagProcessorTimeTrigger>();
+        _logger = loggerFactory.CreateLogger<TagManagerTimeTrigger>();
     }
 
-    [Function(nameof(TagProcessorTimeTrigger))]
+    [Function(nameof(TagManagerTimeTrigger))]
     [ServiceBusOutput("time-trigger-service-bus-queue", Connection = "WriteServiceBusConnection")]
     public string
      Run([TimerTrigger("0 */15 * * * *", RunOnStartup = false)] TimerInfo myTimer)

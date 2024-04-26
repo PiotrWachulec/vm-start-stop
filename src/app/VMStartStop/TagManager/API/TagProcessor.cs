@@ -7,18 +7,18 @@ using MyCo.TagManager.Application.Commands;
 
 namespace MyCo.TagManager
 {
-    public class ServiceBusQueueTrigger1
+    public class TagProcessor
     {
-        private readonly ILogger<ServiceBusQueueTrigger1> _logger;
+        private readonly ILogger<TagProcessor> _logger;
         private readonly ITagManagerService _tagManagerService;
 
-        public ServiceBusQueueTrigger1(ITagManagerService tagManagerService, ILogger<ServiceBusQueueTrigger1> logger)
+        public TagProcessor(ITagManagerService tagManagerService, ILogger<TagProcessor> logger)
         {
             _tagManagerService = tagManagerService;
             _logger = logger;
         }
 
-        [Function(nameof(ServiceBusQueueTrigger1))]
+        [Function(nameof(TagProcessor))]
         public async Task Run(
             [ServiceBusTrigger("time-trigger-service-bus-queue", Connection = "ReadServiceBusConnection")]
             ServiceBusReceivedMessage message,

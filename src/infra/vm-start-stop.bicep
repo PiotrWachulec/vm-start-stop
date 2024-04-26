@@ -100,6 +100,10 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
           name: 'WriteServiceBusConnection'
           value: serviceBusWriteQueuePolicy.listKeys().primaryConnectionString
         }
+        {
+          name: 'AZURE_CLIENT_ID'
+          value: managedIdentity.properties.clientId
+        }
       ]
       ftpsState: 'FtpsOnly'
       minTlsVersion: '1.2'

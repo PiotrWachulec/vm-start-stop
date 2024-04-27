@@ -29,6 +29,8 @@ param logAnalyticsWorkspaceResourceGroupName string
 param managedIdentityName string
 
 var timeTriggerServiceBusQueueName = 'time-trigger-service-bus-queue'
+var turnOnVMServiceBusQueueName = 'turn-on-vm-service-bus-queue'
+var turnOffVMServiceBusQueueName = 'turn-off-vm-service-bus-queue'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
@@ -94,11 +96,11 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
         }
         {
           name: 'ReadServiceBusConnection'
-          value: serviceBusReadQueuePolicy.listKeys().primaryConnectionString
+          value: serviceBusReadPolicy.listKeys().primaryConnectionString
         }
         {
           name: 'WriteServiceBusConnection'
-          value: serviceBusWriteQueuePolicy.listKeys().primaryConnectionString
+          value: serviceBusWritePolicy.listKeys().primaryConnectionString
         }
         {
           name: 'AZURE_CLIENT_ID'
@@ -146,13 +148,23 @@ resource serviceBus 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' = {
   }
 }
 
-resource serviceBusQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
+resource timeTriggerQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
   parent: serviceBus
   name: timeTriggerServiceBusQueueName
 }
 
-resource serviceBusReadQueuePolicy 'Microsoft.ServiceBus/namespaces/queues/authorizationRules@2022-10-01-preview' = {
-  parent: serviceBusQueue
+resource turnOnVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
+  parent: serviceBus
+  name: turnOnVMServiceBusQueueName
+}
+
+resource turnOffVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
+  parent: serviceBus
+  name: turnOffVMServiceBusQueueName
+}
+
+resource serviceBusReadPolicy 'Microsoft.ServiceBus/namespaces/authorizationRules@2022-10-01-preview' = {
+  parent: serviceBus
   name: 'ReadQueuePolicy'
   properties: {
     rights: [
@@ -161,8 +173,8 @@ resource serviceBusReadQueuePolicy 'Microsoft.ServiceBus/namespaces/queues/autho
   }
 }
 
-resource serviceBusWriteQueuePolicy 'Microsoft.ServiceBus/namespaces/queues/authorizationRules@2022-10-01-preview' = {
-  parent: serviceBusQueue
+resource serviceBusWritePolicy 'Microsoft.ServiceBus/namespaces/authorizationRules@2022-10-01-preview' = {
+  parent: serviceBus
   name: 'WriteQueuePolicy'
   properties: {
     rights: [

@@ -8,44 +8,43 @@ using Azure.ResourceManager;
 using Azure.ResourceManager.Compute;
 using Azure.Core;
 
-namespace MyCo.Switcher
+namespace MyCo.Switcher;
+
+public class TurnOnVm
 {
-    public class TurnOnVm
+    private readonly ArmClient _armClient;
+    private readonly ILogger<TurnOnVm> _logger;
+
+    public TurnOnVm(ILogger<TurnOnVm> logger)
     {
-        private readonly ArmClient _armClient;
-        private readonly ILogger<TurnOnVm> _logger;
+        _logger = logger;
+        _armClient = new ArmClient(new DefaultAzureCredential());
+    }
 
-        public TurnOnVm(ILogger<TurnOnVm> logger)
-        {
-            _logger = logger;
-            _armClient = new ArmClient(new DefaultAzureCredential());
-        }
-
-        [Function(nameof(TurnOnVm))]
-        public async Task Run(
-            [ServiceBusTrigger("turn-on-vm-service-bus-queue", Connection = "ReadServiceBusConnection")]
+    [Function(nameof(TurnOnVm))]
+    public async Task Run(
+        [ServiceBusTrigger("turn-on-vm-service-bus-queue", Connection = "ReadServiceBusConnection")]
             ServiceBusReceivedMessage message,
-            ServiceBusMessageActions messageActions)
+        ServiceBusMessageActions messageActions)
+    {
+        var vm = _armClient.GetVirtualMachineResource(new ResourceIdentifier(message.Body.ToString()));
+
+        if (vm == null)
         {
-            var vm = _armClient.GetVirtualMachineResource(new ResourceIdentifier(message.Body.ToString()));
-
-            if (vm == null)
-            {
-                _logger.LogError("VM not found: {vmName}", message.Body.ToString());
-                await messageActions.DeadLetterMessageAsync(message);
-                return;
-            }
-
-            // if the VM is already running, do nothing
-            // if the VM is stopped, start it
-            // if the VM is deallocating, or deallocated, notify the user that the VM is in a state that cannot be started
-
-            _logger.LogInformation("Message ID: {id}", message.MessageId);
-            _logger.LogInformation("Message Body: {body}", message.Body);
-            _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
-
-            // Complete the message
-            await messageActions.CompleteMessageAsync(message);
+            _logger.LogError("VM not found: {vmName}", message.Body.ToString());
+            await messageActions.DeadLetterMessageAsync(message);
+            return;
         }
+
+        // if the VM is already running, do nothing
+        // if the VM is stopped, start it
+        // if the VM is deallocating, or deallocated, notify the user that the VM is in a state that cannot be started
+
+        _logger.LogInformation("Message ID: {id}", message.MessageId);
+        _logger.LogInformation("Message Body: {body}", message.Body);
+        _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
+
+        // Complete the message
+        await messageActions.CompleteMessageAsync(message);
     }
 }

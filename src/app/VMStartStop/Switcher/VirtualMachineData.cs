@@ -1,8 +1,8 @@
 namespace MyCo.Switcher;
 
-public class VirtualMachineData
+public class VirtualMachineData(string subscriptionId, string resourceGroupName, string virtualMachineName)
 {
-    public string SubscriptionId { get; set; }
-    public string ResourceGroupName { get; set; }
-    public string VirtualMachineName { get; set; }
+    public string SubscriptionId { get; } = subscriptionId;
+    public string ResourceGroupName { get; } = resourceGroupName;
+    public string VirtualMachineName { get; } = virtualMachineName;
 }

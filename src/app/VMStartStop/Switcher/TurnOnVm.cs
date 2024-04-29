@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
@@ -27,7 +28,19 @@ public class TurnOnVm
             ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions)
     {
-        var virtualMachineResource = _armClient.GetVirtualMachineResource(new ResourceIdentifier(VirtualMachineResource.CreateResourceIdentifier("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee", "test-rg", "test-vm")));
+        if (message.ContentType != "application/json")
+        {
+            throw new ArgumentException("Incorrect content type", nameof(message));
+        }
+
+        VirtualMachineData virtualMachineData = JsonSerializer.Deserialize<VirtualMachineData>(message.Body.ToString());
+
+        var virtualMachineResource = _armClient.GetVirtualMachineResource(
+            new ResourceIdentifier(
+                VirtualMachineResource.CreateResourceIdentifier(
+                    virtualMachineData.SubscriptionId,
+                    virtualMachineData.ResourceGroupName,
+                    virtualMachineData.VirtualMachineName)));
 
         try
         {

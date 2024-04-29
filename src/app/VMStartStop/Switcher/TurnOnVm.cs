@@ -27,9 +27,13 @@ public class TurnOnVm
             ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions)
     {
-        var vm = _armClient.GetVirtualMachineResource(new ResourceIdentifier(message.Body.ToString()));
+        var virtualMachineResource = _armClient.GetVirtualMachineResource(new ResourceIdentifier(VirtualMachineResource.CreateResourceIdentifier("aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee", "test-rg", "test-vm")));
 
-        if (vm == null)
+        try
+        {
+            var vm = await virtualMachineResource.GetAsync();
+        }
+        catch (System.Exception)
         {
             _logger.LogError("VM not found: {vmName}", message.Body.ToString());
             await messageActions.DeadLetterMessageAsync(message);

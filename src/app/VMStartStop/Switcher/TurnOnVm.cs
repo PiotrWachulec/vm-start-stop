@@ -33,7 +33,12 @@ public class TurnOnVm
             throw new ArgumentException("Incorrect content type", nameof(message));
         }
 
-        VirtualMachineData virtualMachineData = JsonSerializer.Deserialize<VirtualMachineData>(message.Body.ToString());
+        VirtualMachineData virtualMachineData = JsonSerializer.Deserialize<VirtualMachineData>(
+            message.Body.ToString(),
+            new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
 
         var virtualMachineResource = _armClient.GetVirtualMachineResource(
             new ResourceIdentifier(

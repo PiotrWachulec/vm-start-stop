@@ -8,6 +8,7 @@ using Azure.Identity;
 using Azure.ResourceManager;
 using Azure.ResourceManager.Compute;
 using Azure.Core;
+using Azure.ResourceManager.Compute.Models;
 
 namespace MyCo.Switcher;
 
@@ -50,6 +51,8 @@ public class TurnOnVm
         try
         {
             var vm = await virtualMachineResource.GetAsync();
+            var output = await virtualMachineResource.PowerOnAsync(Azure.WaitUntil.Completed);
+            _logger.LogInformation("VM started: {output}", output);
         }
         catch (System.Exception)
         {
@@ -57,6 +60,8 @@ public class TurnOnVm
             await messageActions.DeadLetterMessageAsync(message);
             return;
         }
+
+        
 
         // if the VM is already running, do nothing
         // if the VM is stopped, start it

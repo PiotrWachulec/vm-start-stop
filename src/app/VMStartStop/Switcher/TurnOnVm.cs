@@ -1,7 +1,6 @@
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Azure.Identity;
@@ -9,6 +8,7 @@ using Azure.ResourceManager;
 using Azure.ResourceManager.Compute;
 using Azure.Core;
 using Azure.ResourceManager.Compute.Models;
+using Azure.Messaging.ServiceBus;
 
 namespace MyCo.Switcher;
 
@@ -29,49 +29,43 @@ public class TurnOnVm
             ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions)
     {
+        _logger.LogInformation("Message ID: {id}", message.MessageId);
+
         if (message.ContentType != "application/json")
         {
             throw new ArgumentException("Incorrect content type", nameof(message));
         }
 
-        VirtualMachineData virtualMachineData = JsonSerializer.Deserialize<VirtualMachineData>(
-            message.Body.ToString(),
-            new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            });
-
-        var virtualMachineResource = _armClient.GetVirtualMachineResource(
-            new ResourceIdentifier(
-                VirtualMachineResource.CreateResourceIdentifier(
-                    virtualMachineData.SubscriptionId,
-                    virtualMachineData.ResourceGroupName,
-                    virtualMachineData.VirtualMachineName)));
-
         try
         {
+            VirtualMachineData virtualMachineData = JsonSerializer.Deserialize<VirtualMachineData>(
+                message.Body.ToString(),
+                new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            var virtualMachineResource = _armClient.GetVirtualMachineResource(
+                new ResourceIdentifier(
+                    VirtualMachineResource.CreateResourceIdentifier(
+                        virtualMachineData.SubscriptionId,
+                        virtualMachineData.ResourceGroupName,
+                        virtualMachineData.VirtualMachineName)));
+
+
             var vm = await virtualMachineResource.GetAsync();
             var output = await virtualMachineResource.PowerOnAsync(Azure.WaitUntil.Completed);
-            _logger.LogInformation("VM started: {output}", output);
+            _logger.LogInformation("VM started: {vmName}", virtualMachineData.VirtualMachineName);
         }
-        catch (System.Exception)
+        catch (Exception e)
         {
-            _logger.LogError("VM not found: {vmName}", message.Body.ToString());
+            _logger.LogError("VM cannot be started: {vmName}", virtualMachineData.VirtualMachineName);
+            _logger.LogError(e.Message);
+
             await messageActions.DeadLetterMessageAsync(message);
             return;
         }
 
-        
-
-        // if the VM is already running, do nothing
-        // if the VM is stopped, start it
-        // if the VM is deallocating, or deallocated, notify the user that the VM is in a state that cannot be started
-
-        _logger.LogInformation("Message ID: {id}", message.MessageId);
-        _logger.LogInformation("Message Body: {body}", message.Body);
-        _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
-
-        // Complete the message
         await messageActions.CompleteMessageAsync(message);
     }
 }

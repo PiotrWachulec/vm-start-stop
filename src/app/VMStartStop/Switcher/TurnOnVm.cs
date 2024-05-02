@@ -52,7 +52,6 @@ public class TurnOnVm
                         virtualMachineData.ResourceGroupName,
                         virtualMachineData.VirtualMachineName)));
 
-
             var vm = await virtualMachineResource.GetAsync();
             var output = await virtualMachineResource.PowerOnAsync(Azure.WaitUntil.Completed);
             _logger.LogInformation("VM started: {vmName}", virtualMachineData.VirtualMachineName);

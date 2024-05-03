@@ -1,13 +1,10 @@
-using System;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Azure.Identity;
 using Azure.ResourceManager;
 using Azure.ResourceManager.Compute;
 using Azure.Core;
-using Azure.ResourceManager.Compute.Models;
 using Azure.Messaging.ServiceBus;
 
 namespace MyCo.Switcher;
@@ -25,7 +22,7 @@ public class TurnOnOffVm
 
     [Function(nameof(TurnOnOffVm))]
     public async Task Run(
-        [ServiceBusTrigger("turn-on-vm-service-bus-queue", Connection = "ReadServiceBusConnection")]
+        [ServiceBusTrigger("turn-on-off-vm-service-bus-queue", Connection = "ReadServiceBusConnection")]
             ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions)
     {
@@ -53,12 +50,26 @@ public class TurnOnOffVm
                         virtualMachineData.VirtualMachineName)));
 
             var vm = await virtualMachineResource.GetAsync();
-            var output = await virtualMachineResource.PowerOnAsync(Azure.WaitUntil.Completed);
-            _logger.LogInformation("VM started: {vmName}", virtualMachineData.VirtualMachineName);
+
+            if (virtualMachineData.Action == "stop")
+            {
+                _logger.LogInformation("Stopping VM: {vmName}", virtualMachineData.VirtualMachineName);
+                await virtualMachineResource.DeallocateAsync(Azure.WaitUntil.Completed);
+                _logger.LogInformation("VM stopped: {vmName}", virtualMachineData.VirtualMachineName);
+            }
+            else if (virtualMachineData.Action == "start")
+            {
+                _logger.LogInformation("Starting VM: {vmName}", virtualMachineData.VirtualMachineName);
+                await virtualMachineResource.PowerOnAsync(Azure.WaitUntil.Completed);
+                _logger.LogInformation("VM started: {vmName}", virtualMachineData.VirtualMachineName);
+            }
+            else
+            {
+                throw new ArgumentException("Invalid action", nameof(virtualMachineData.Action));
+            }
         }
         catch (Exception e)
         {
-            _logger.LogError("VM cannot be started: {vmName}", virtualMachineData.VirtualMachineName);
             _logger.LogError(e.Message);
 
             await messageActions.DeadLetterMessageAsync(message);

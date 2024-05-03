@@ -29,8 +29,7 @@ param logAnalyticsWorkspaceResourceGroupName string
 param managedIdentityName string
 
 var timeTriggerServiceBusQueueName = 'time-trigger-service-bus-queue'
-var turnOnVMServiceBusQueueName = 'turn-on-vm-service-bus-queue'
-var turnOffVMServiceBusQueueName = 'turn-off-vm-service-bus-queue'
+var turnOnOffVMServiceBusQueueName = 'turn-on-off-vm-service-bus-queue'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
@@ -153,14 +152,9 @@ resource timeTriggerQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-pre
   name: timeTriggerServiceBusQueueName
 }
 
-resource turnOnVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
+resource turnOnOffVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
   parent: serviceBus
-  name: turnOnVMServiceBusQueueName
-}
-
-resource turnOffVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
-  parent: serviceBus
-  name: turnOffVMServiceBusQueueName
+  name: turnOnOffVMServiceBusQueueName
 }
 
 resource serviceBusReadPolicy 'Microsoft.ServiceBus/namespaces/authorizationRules@2022-10-01-preview' = {

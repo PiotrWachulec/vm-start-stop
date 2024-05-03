@@ -12,18 +12,18 @@ using Azure.Messaging.ServiceBus;
 
 namespace MyCo.Switcher;
 
-public class TurnOnVm
+public class TurnOnOffVm
 {
     private readonly ArmClient _armClient;
-    private readonly ILogger<TurnOnVm> _logger;
+    private readonly ILogger<TurnOnOffVm> _logger;
 
-    public TurnOnVm(ILogger<TurnOnVm> logger)
+    public TurnOnOffVm(ILogger<TurnOnOffVm> logger)
     {
         _logger = logger;
         _armClient = new ArmClient(new DefaultAzureCredential());
     }
 
-    [Function(nameof(TurnOnVm))]
+    [Function(nameof(TurnOnOffVm))]
     public async Task Run(
         [ServiceBusTrigger("turn-on-vm-service-bus-queue", Connection = "ReadServiceBusConnection")]
             ServiceBusReceivedMessage message,

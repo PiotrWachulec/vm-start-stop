@@ -49,8 +49,6 @@ public class TurnOnOffVm
                         virtualMachineData.ResourceGroupName,
                         virtualMachineData.VirtualMachineName)));
 
-            var vm = await virtualMachineResource.GetAsync();
-
             if (virtualMachineData.Action == "stop")
             {
                 _logger.LogInformation("Stopping VM: {vmName}", virtualMachineData.VirtualMachineName);

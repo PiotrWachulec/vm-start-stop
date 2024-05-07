@@ -14,10 +14,10 @@ public class TurnOnOffVm
     private readonly ArmClient _armClient;
     private readonly ILogger<TurnOnOffVm> _logger;
 
-    public TurnOnOffVm(ILogger<TurnOnOffVm> logger)
+    public TurnOnOffVm(ILogger<TurnOnOffVm> logger, ArmClient armClient)
     {
         _logger = logger;
-        _armClient = new ArmClient(new DefaultAzureCredential());
+        _armClient = armClient;
     }
 
     [Function(nameof(TurnOnOffVm))]

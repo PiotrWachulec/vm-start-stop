@@ -1,4 +1,5 @@
 using System.Text.Json;
+using Azure.Core;
 using Azure.Identity;
 using Azure.Messaging.ServiceBus;
 using Azure.ResourceManager;
@@ -23,7 +24,7 @@ public class GetVmsFromRgToSwitch
 
     [Function(nameof(GetVmsFromRgToSwitch))]
     [ServiceBusOutput("turn-on-off-vm-service-bus-queue", Connection = "WriteServiceBusConnection")]
-    public async Task Run(
+    public async Task<ICollection<VirtualMachineToSwitchData>> Run(
         [ServiceBusTrigger("switch-vm-in-rg-service-bus-queue", Connection = "ReadServiceBusConnection")]
             ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions)
@@ -35,32 +36,55 @@ public class GetVmsFromRgToSwitch
             throw new ArgumentException("Incorrect content type", nameof(message));
         }
 
+        if (message.Body == null)
+        {
+            throw new ArgumentException("Message body is null", nameof(message));
+        }
+
         try
         {
-            ResourceGroupToSwitchData resourceGroupData = JsonSerializer.Deserialize<ResourceGroupToSwitchData>(
-                message.Body.ToString(),
-                new JsonSerializerOptions
+            JsonSerializerOptions options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
+
+            ResourceGroupToSwitchData? resourceGroupData = JsonSerializer.Deserialize<ResourceGroupToSwitchData>(
+                message.Body.ToString(), options);
+
+            _logger.LogInformation("Switching VMs in resource group: {rgName}", resourceGroupData?.ResourceGroupName);
+
+            var subscription = _armClient.GetSubscriptionResource(
+                SubscriptionResource.CreateResourceIdentifier(
+                    new ResourceIdentifier(resourceGroupData?.SubscriptionId)));
+
+            var vms = subscription.GetVirtualMachinesAsync();
+
+            var vmsToSwitch = new List<VirtualMachineToSwitchData>();
+
+            await foreach (VirtualMachineResource vm in subscription.GetVirtualMachinesAsync())
+            {
+                vmsToSwitch.Add(new()
                 {
-                    PropertyNameCaseInsensitive = true
+                    SubscriptionId = resourceGroupData.SubscriptionId,
+                    ResourceGroupName = resourceGroupData.ResourceGroupName,
+                    VirtualMachineName = vm.Data.Name,
+                    Action = resourceGroupData.Action
                 });
+            }
 
-            _logger.LogInformation("Switching VMs in resource group: {rgName}", resourceGroupData.ResourceGroupName);
-
-            // var rg = _armClient.
-
-            // Get the VMs in the resource group
-            // Switch the VMs
-            // Send the VMs to the turn-on-off-vm-service-bus-queue
+            return vmsToSwitch;
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
 
             await messageActions.DeadLetterMessageAsync(message);
-            return;
-        }
 
-        // Complete the message
-        await messageActions.CompleteMessageAsync(message);
+            return [];
+        }
+        finally
+        {
+            await messageActions.CompleteMessageAsync(message);
+        }
     }
 }

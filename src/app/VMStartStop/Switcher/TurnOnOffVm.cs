@@ -35,7 +35,7 @@ public class TurnOnOffVm
 
         try
         {
-            VirtualMachineData virtualMachineData = JsonSerializer.Deserialize<VirtualMachineData>(
+            VirtualMachineToSwitchData virtualMachineData = JsonSerializer.Deserialize<VirtualMachineToSwitchData>(
                 message.Body.ToString(),
                 new JsonSerializerOptions
                 {

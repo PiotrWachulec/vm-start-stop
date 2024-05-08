@@ -57,7 +57,11 @@ public class GetVmsFromRgToSwitch
                 SubscriptionResource.CreateResourceIdentifier(
                     new ResourceIdentifier(resourceGroupData?.SubscriptionId)));
 
-            var vms = subscription.GetVirtualMachinesAsync();
+            var rgFilter = "resourceGroup eq '" + resourceGroupData?.ResourceGroupName + "'";
+
+            _logger.LogInformation("Filtering resource group: {rgFilter}", rgFilter);
+
+            var vms = subscription.GetVirtualMachinesAsync(filter: rgFilter);
 
             var vmsToSwitch = new List<VirtualMachineToSwitchData>();
 

@@ -31,6 +31,7 @@ param managedIdentityName string
 var timeTriggerServiceBusQueueName = 'time-trigger-service-bus-queue'
 var turnOnOffVMServiceBusQueueName = 'turn-on-off-vm-service-bus-queue'
 var switchVmInRgServiceBusQueueName = 'switch-vm-in-rg-service-bus-queue'
+var switchVmInSubServiceBusQueueName = 'switch-vm-in-sub-service-bus-queue'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
@@ -161,6 +162,11 @@ resource turnOnOffVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-pre
 resource switchVmInRgQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
   parent: serviceBus
   name: switchVmInRgServiceBusQueueName
+}
+
+resource switchVmInSubQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
+  parent: serviceBus
+  name: switchVmInSubServiceBusQueueName
 }
 
 resource serviceBusReadPolicy 'Microsoft.ServiceBus/namespaces/authorizationRules@2022-10-01-preview' = {

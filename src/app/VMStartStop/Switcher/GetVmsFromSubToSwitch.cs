@@ -18,7 +18,7 @@ namespace MyCo
         [Function(nameof(GetVmsFromSubToSwitch))]
         [ServiceBusOutput("turn-on-off-vm-service-bus-queue", Connection = "WriteServiceBusConnection")]
         public async Task Run(
-            [ServiceBusTrigger("switch-vm-in-rg-service-bus-queue", Connection = "ReadServiceBusConnection")]
+            [ServiceBusTrigger("switch-vm-in-sub-service-bus-queue", Connection = "ReadServiceBusConnection")]
             ServiceBusReceivedMessage message,
             ServiceBusMessageActions messageActions)
         {

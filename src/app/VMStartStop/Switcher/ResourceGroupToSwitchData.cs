@@ -2,11 +2,15 @@ namespace MyCo.Switcher;
 
 public class ResourceGroupToSwitchData
 {
+    private string _subscriptionId;
+    private string _resourceGroupName;
+    private string _action;
+
     public required string SubscriptionId
     {
         get
         {
-            return SubscriptionId;
+            return _subscriptionId;
         }
         init
         {
@@ -14,6 +18,8 @@ public class ResourceGroupToSwitchData
             {
                 throw new ArgumentException("SubscriptionId is required", nameof(SubscriptionId));
             }
+
+            _subscriptionId = value;
         }
     }
 
@@ -21,7 +27,7 @@ public class ResourceGroupToSwitchData
     {
         get
         {
-            return ResourceGroupName;
+            return _resourceGroupName;
         }
         init
         {
@@ -29,6 +35,8 @@ public class ResourceGroupToSwitchData
             {
                 throw new ArgumentException("ResourceGroupName is required", nameof(ResourceGroupName));
             }
+
+            _resourceGroupName = value;
         }
     }
 
@@ -36,7 +44,7 @@ public class ResourceGroupToSwitchData
     {
         get
         {
-            return Action;
+            return _action;
         }
         init
         {
@@ -48,6 +56,8 @@ public class ResourceGroupToSwitchData
             {
                 throw new ArgumentException("Action must be either 'start' or 'stop'", nameof(Action));
             }
+
+            _action = value;
         }
     }
 }

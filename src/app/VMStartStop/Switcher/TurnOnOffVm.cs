@@ -73,7 +73,9 @@ public class TurnOnOffVm
             await messageActions.DeadLetterMessageAsync(message);
             return;
         }
-
-        await messageActions.CompleteMessageAsync(message);
+        finally
+        {
+            await messageActions.CompleteMessageAsync(message);
+        }
     }
 }

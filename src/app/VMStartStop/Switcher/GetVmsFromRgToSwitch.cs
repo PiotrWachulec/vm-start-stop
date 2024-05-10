@@ -31,11 +31,6 @@ public class GetVmsFromRgToSwitch
     {
         _logger.LogInformation("Message ID: {id}", message.MessageId);
 
-        if (message.ContentType != "application/json")
-        {
-            throw new ArgumentException("Incorrect content type", nameof(message));
-        }
-
         if (message.Body == null)
         {
             throw new ArgumentException("Message body is null", nameof(message));

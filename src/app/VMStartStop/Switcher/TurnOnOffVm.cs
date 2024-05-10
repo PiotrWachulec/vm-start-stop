@@ -28,9 +28,9 @@ public class TurnOnOffVm
     {
         _logger.LogInformation("Message ID: {id}", message.MessageId);
 
-        if (message.ContentType != "application/json")
+        if (message.Body == null)
         {
-            throw new ArgumentException("Incorrect content type", nameof(message));
+            throw new ArgumentException("Message body is null", nameof(message));
         }
 
         try

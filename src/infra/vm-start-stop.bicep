@@ -32,6 +32,7 @@ var timeTriggerServiceBusQueueName = 'time-trigger-service-bus-queue'
 var turnOnOffVMServiceBusQueueName = 'turn-on-off-vm-service-bus-queue'
 var switchVmInRgServiceBusQueueName = 'switch-vm-in-rg-service-bus-queue'
 var switchVmInSubServiceBusQueueName = 'switch-vm-in-sub-service-bus-queue'
+var notifyServiceBusQueueName = 'notify-service-bus-queue'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
@@ -154,9 +155,17 @@ resource timeTriggerQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-pre
   name: timeTriggerServiceBusQueueName
 }
 
+resource notifyQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
+  parent: serviceBus
+  name: notifyServiceBusQueueName
+}
+
 resource turnOnOffVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
   parent: serviceBus
   name: turnOnOffVMServiceBusQueueName
+  properties: {
+    forwardDeadLetteredMessagesTo: notifyQueue.id
+  }
 }
 
 resource switchVmInRgQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {

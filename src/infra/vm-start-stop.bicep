@@ -164,7 +164,7 @@ resource turnOnOffVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-pre
   parent: serviceBus
   name: turnOnOffVMServiceBusQueueName
   properties: {
-    forwardDeadLetteredMessagesTo: notifyQueue.id
+    forwardDeadLetteredMessagesTo: notifyQueue.name
   }
 }
 

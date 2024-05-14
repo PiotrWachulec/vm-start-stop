@@ -65,6 +65,8 @@ public class TurnOnOffVm
             {
                 throw new ArgumentException("Invalid action", nameof(virtualMachineData.Action));
             }
+
+            await messageActions.CompleteMessageAsync(message);
         }
         catch (Exception e)
         {
@@ -72,10 +74,6 @@ public class TurnOnOffVm
 
             await messageActions.DeadLetterMessageAsync(message);
             return;
-        }
-        finally
-        {
-            await messageActions.CompleteMessageAsync(message);
         }
     }
 }

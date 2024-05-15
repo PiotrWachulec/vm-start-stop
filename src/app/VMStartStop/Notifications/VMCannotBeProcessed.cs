@@ -1,4 +1,7 @@
 using System;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
@@ -17,13 +20,26 @@ namespace MyCo
 
         [Function(nameof(VMCannotBeProcessed))]
         public async Task Run(
-            [ServiceBusTrigger("turn-on-off-vm-service-bus-queue/$deadletterqueue", Connection = "ReadServiceBusConnection")]
+            [ServiceBusTrigger("notify-service-bus-queue", Connection = "ReadServiceBusConnection")]
             ServiceBusReceivedMessage message,
             ServiceBusMessageActions messageActions)
         {
             _logger.LogInformation("Message ID: {id}", message.MessageId);
             _logger.LogInformation("Message Body: {body}", message.Body);
             _logger.LogInformation("Message Content-Type: {contentType}", message.ContentType);
+
+            HttpClient httpClient = new();
+            
+            var contentObject = new{
+                content = JsonSerializer.Deserialize<object>(message.Body)
+            };
+
+            var contentString = JsonSerializer.Serialize(contentObject);
+
+            HttpContent content = JsonContent.Create(contentObject, new MediaTypeHeaderValue("application/json"));
+            var url = "";
+
+            var response = await httpClient.PostAsync(url, content);
 
             // Complete the message
             await messageActions.CompleteMessageAsync(message);

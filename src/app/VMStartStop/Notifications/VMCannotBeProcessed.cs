@@ -31,7 +31,7 @@ namespace MyCo
             HttpClient httpClient = new();
             
             var contentObject = new{
-                content = JsonSerializer.Deserialize<object>(message.Body)
+                content = message.Body.ToString()
             };
 
             var contentString = JsonSerializer.Serialize(contentObject);

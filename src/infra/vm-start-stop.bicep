@@ -28,11 +28,16 @@ param logAnalyticsWorkspaceResourceGroupName string
 @description('Name of the managed identity')
 param managedIdentityName string
 
+@description('Notification webhook')
+@secure()
+param notificationWebhook string
+
 var timeTriggerServiceBusQueueName = 'time-trigger-service-bus-queue'
 var turnOnOffVMServiceBusQueueName = 'turn-on-off-vm-service-bus-queue'
 var switchVmInRgServiceBusQueueName = 'switch-vm-in-rg-service-bus-queue'
 var switchVmInSubServiceBusQueueName = 'switch-vm-in-sub-service-bus-queue'
 var notifyServiceBusQueueName = 'notify-service-bus-queue'
+var notificationWebhookSecretName = 'NOTIFICATION-WEBHOOK'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
@@ -108,6 +113,10 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
           name: 'AZURE_CLIENT_ID'
           value: managedIdentity.properties.clientId
         }
+        {
+          name: 'NOTIFICATION_WEBHOOK'
+          value: notificationWebhook
+        }
       ]
       ftpsState: 'FtpsOnly'
       minTlsVersion: '1.2'
@@ -139,6 +148,14 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-07-01' = {
     }
     tenantId: tenant().tenantId
     enableRbacAuthorization: true
+  }
+}
+
+resource notificationSecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
+  parent: keyVault
+  name: notificationWebhookSecretName
+  properties: {
+    value: notificationWebhook
   }
 }
 

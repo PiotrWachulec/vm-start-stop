@@ -30,7 +30,7 @@ param managedIdentityName string
 
 @description('Notification webhook')
 @secure()
-param notificationWebhook string
+param notificationWebhook string = ''
 
 var timeTriggerServiceBusQueueName = 'time-trigger-service-bus-queue'
 var turnOnOffVMServiceBusQueueName = 'turn-on-off-vm-service-bus-queue'

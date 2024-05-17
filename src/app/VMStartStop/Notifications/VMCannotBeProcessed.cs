@@ -34,8 +34,6 @@ namespace MyCo
                 content = message.Body.ToString()
             };
 
-            var contentString = JsonSerializer.Serialize(contentObject);
-
             HttpContent content = JsonContent.Create(contentObject, new MediaTypeHeaderValue("application/json"));
             var url = "";
 

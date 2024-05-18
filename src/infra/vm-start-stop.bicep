@@ -115,7 +115,7 @@ resource functionApp 'Microsoft.Web/sites@2023-01-01' = {
         }
         {
           name: 'NOTIFICATION_WEBHOOK'
-          value: notificationWebhook
+          value: '@Microsoft.KeyVault(VaultName=${keyVault.name};SecretName=${notificationSecret.name})'
         }
       ]
       ftpsState: 'FtpsOnly'

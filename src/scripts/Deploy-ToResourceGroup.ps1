@@ -11,14 +11,16 @@ param (
     $ResourceGroupName,
     [Parameter()]
     [string]
-    $Validate
+    $Validate,
+    [PSCustomObject]
+    $CustomParams
 )
 
 $timestamp = Get-Date -Format 'yyyyMMddHHmmss'
 
 $isValidation = $Validate -eq 'true'
 
-$params = @{
+$deploymentParams = @{
     ResourceGroupName     = $ResourceGroupName
     TemplateFile          = $TemplateFilePath
     TemplateParameterFile = $TemplateParameterFilePath
@@ -26,6 +28,13 @@ $params = @{
     Mode                  = 'Complete'
     Force                 = !$isValidation
     WhatIf                = $isValidation
+}
+
+if ($null -eq $CustomParams) {
+    $params = $deploymentParams
+}
+else {
+    $params = $deploymentParams + $CustomParams
 }
 
 New-AzResourceGroupDeployment @params

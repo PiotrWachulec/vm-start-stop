@@ -1,21 +1,21 @@
-using System;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using System.Text.Json;
-using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace MyCo
 {
     public class VMCannotBeProcessed
     {
+        private readonly string _webhook;
         private readonly ILogger<VMCannotBeProcessed> _logger;
 
-        public VMCannotBeProcessed(ILogger<VMCannotBeProcessed> logger)
+        public VMCannotBeProcessed(ILogger<VMCannotBeProcessed> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _webhook = configuration["NOTIFICATION_WEBHOOK"];
         }
 
         [Function(nameof(VMCannotBeProcessed))]
@@ -35,11 +35,9 @@ namespace MyCo
             };
 
             HttpContent content = JsonContent.Create(contentObject, new MediaTypeHeaderValue("application/json"));
-            var url = "";
 
-            var response = await httpClient.PostAsync(url, content);
+            var response = await httpClient.PostAsync(_webhook, content);
 
-            // Complete the message
             await messageActions.CompleteMessageAsync(message);
         }
     }

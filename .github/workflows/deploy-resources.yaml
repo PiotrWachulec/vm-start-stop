@@ -29,6 +29,8 @@ jobs:
 
       - name: Deploy resources DEV
         uses: azure/powershell@v1
+        env:
+          NOTIFICATION_WEBHOOK: ${{ secrets.NOTIFICATION_WEBHOOK_DEV }}
         with:
           inlineScript: |
             $ParamsDev = @{
@@ -58,6 +60,8 @@ jobs:
 
   #     - name: Deploy PROD resource group
   #       uses: azure/powershell@v1
+            # env:
+            #   NOTIFICATION_WEBHOOK: ${{ secrets.NOTIFICATION_WEBHOOK_DEV }}
   #       with:
   #         inlineScript: |
   #           $ParamsProd = @{

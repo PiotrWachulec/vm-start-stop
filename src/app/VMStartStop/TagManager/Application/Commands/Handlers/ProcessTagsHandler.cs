@@ -18,7 +18,8 @@ public class ProcessTagsHandler : IRequestHandler<ProcessTags>
     public Task Handle(ProcessTags request, CancellationToken cancellationToken)
     {
         _logger.LogInformation("Processing tags");
-        _tagManagerService.GetTagsFromAzure();
+        _logger.LogInformation($"Time triggered: {request.TriggerTime}");
+        // _tagManagerService.GetTagsFromAzure();
         return Task.CompletedTask;
     }
 }

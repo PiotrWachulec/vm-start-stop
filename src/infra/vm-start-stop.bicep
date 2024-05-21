@@ -188,11 +188,17 @@ resource turnOnOffVmQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-pre
 resource switchVmInRgQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
   parent: serviceBus
   name: switchVmInRgServiceBusQueueName
+  properties: {
+    forwardDeadLetteredMessagesTo: notifyQueue.name
+  }
 }
 
 resource switchVmInSubQueue 'Microsoft.ServiceBus/namespaces/queues@2022-10-01-preview' = {
   parent: serviceBus
   name: switchVmInSubServiceBusQueueName
+  properties: {
+    forwardDeadLetteredMessagesTo: notifyQueue.name
+  }
 }
 
 resource serviceBusReadPolicy 'Microsoft.ServiceBus/namespaces/authorizationRules@2022-10-01-preview' = {

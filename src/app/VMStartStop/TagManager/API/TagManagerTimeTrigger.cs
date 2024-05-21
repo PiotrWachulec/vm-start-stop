@@ -17,7 +17,7 @@ public class TagManagerTimeTrigger
     [Function(nameof(TagManagerTimeTrigger))]
     [ServiceBusOutput("time-trigger-service-bus-queue", Connection = "WriteServiceBusConnection")]
     public string
-     Run([TimerTrigger("0 */15 * * * *", RunOnStartup = false)] TimerInfo myTimer)
+     Run([TimerTrigger("0 */15 * * * *", RunOnStartup = false, UseMonitor = true)] TimerInfo myTimer)
     {
         _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
 
@@ -28,6 +28,11 @@ public class TagManagerTimeTrigger
             _logger.LogInformation($"Next timer schedule at: {myTimer.ScheduleStatus.Next}");
         }
 
-        return JsonSerializer.Serialize(new ProcessTags());
+        if (myTimer.ScheduleStatus is null)
+        {
+            throw new Exception("No info about time trigger");
+        }
+        
+        return JsonSerializer.Serialize(new ProcessTags(TimeOnly.FromTimeSpan(myTimer.ScheduleStatus.Last.TimeOfDay)));
     }
 }

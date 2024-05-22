@@ -14,7 +14,7 @@ public class TagManagerService : ITagManagerService
         _tagsRepository = tagsRepository;
     }
 
-    public VMStates IsCurrentTag(VMStartStopTagValue tagValue)
+    public VMStates IsCurrentTag(VMStartStopTagValue tagValue, TimeOnly currentTime)
     {
         if (!tagValue.IsOn)
         {

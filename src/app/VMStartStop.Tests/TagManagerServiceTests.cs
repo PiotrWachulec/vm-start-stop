@@ -1,8 +1,10 @@
+using FluentAssertions;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using MyCo.TagManager;
-using MyCo.VMStartStop;
-using FluentAssertions;
+using MyCo.TagManager.Application;
+using MyCo.TagManager.Domain;
+using MyCo.TagManager.Infrastrucutre;
 
 namespace VMStartStop.Tests;
 

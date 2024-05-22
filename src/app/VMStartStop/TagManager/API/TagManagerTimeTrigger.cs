@@ -19,9 +19,17 @@ public class TagManagerTimeTrigger
     public string
      Run([TimerTrigger("0 */15 * * * *", RunOnStartup = false, UseMonitor = true)] TimerInfo myTimer)
     {
-        _logger.LogInformation($"C# Timer trigger function executed at: {DateTime.Now}");
+        DateTime processingTime = DateTime.Now;
+
+        _logger.LogInformation($"C# Timer trigger function executed at: {processingTime}");
 
         _logger.LogInformation($"Log triggered at: {myTimer.ScheduleStatus.Last}");
+
+        if (DateTime.Compare(myTimer.ScheduleStatus.Last, DateTime.Now.AddMinutes(-15)) < 0)
+        {
+            _logger.LogInformation($"Trigger is too late: triggered at: {myTimer.ScheduleStatus.Last}; processing time: {processingTime}");
+            return null;
+        }
 
         if (myTimer.ScheduleStatus is not null)
         {
@@ -32,7 +40,7 @@ public class TagManagerTimeTrigger
         {
             throw new Exception("No info about time trigger");
         }
-        
+
         return JsonSerializer.Serialize(new ProcessTags(TimeOnly.FromTimeSpan(myTimer.ScheduleStatus.Last.TimeOfDay)));
     }
 }

@@ -28,7 +28,7 @@ public class TagManagerHttpTrigger
 
         return new OutputType()
         {
-            OutputEvent = JsonSerializer.Serialize(new ProcessTags()),
+            OutputEvent = JsonSerializer.Serialize(new ProcessTags(TimeOnly.FromDateTime(DateTime.Now)),
             HttpResponse = response
         };
     }

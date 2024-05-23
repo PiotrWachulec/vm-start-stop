@@ -28,9 +28,10 @@ public class TagManagerServiceTests
     {
         // Arrange
         var tagValue = new VMStartStopTagValue("OFF;08:00-16:00;CET;WEEK");
+        var triggerTimestamp = TimeOnly.FromDateTime(DateTime.Parse("Jan 1, 2024"));
 
         // Act
-        var result = _tagManagerService.IsCurrentTag(tagValue);
+        var result = _tagManagerService.IsCurrentTag(tagValue, triggerTimestamp);
 
         // Assert
         result.Should().Be(VMStates.Omit);
@@ -41,9 +42,10 @@ public class TagManagerServiceTests
     {
         // Arrange
         var tagValue = new VMStartStopTagValue("ON;08:00-16:00;CET;WEEK");
+        var triggerTimestamp = TimeOnly.FromDateTime(DateTime.Parse("Jan 1, 2024"));
 
         // Act
-        var result = _tagManagerService.IsCurrentTag(tagValue);
+        var result = _tagManagerService.IsCurrentTag(tagValue, triggerTimestamp);
 
         // Assert
         result.Should().NotBe(VMStates.Omit);
@@ -54,9 +56,11 @@ public class TagManagerServiceTests
     {
         // Arrange
         var tagValue = new VMStartStopTagValue("OFF;08:00-16:00;CET;WEEK");
+        var triggerTimestamp = TimeOnly.FromDateTime(DateTime.Parse("Jan 1, 2024"));
+
 
         // Act
-        var result = _tagManagerService.IsCurrentTag(tagValue);
+        var result = _tagManagerService.IsCurrentTag(tagValue, triggerTimestamp);
 
         // Assert
         result.Should().Be(VMStates.Omit);

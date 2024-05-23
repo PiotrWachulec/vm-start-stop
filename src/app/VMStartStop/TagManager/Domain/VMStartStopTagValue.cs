@@ -3,8 +3,8 @@ namespace MyCo.TagManager.Domain;
 public class VMStartStopTagValue
 {
     public bool IsOn { get; }
-    public string StartTime { get; }
-    public string EndTime { get; }
+    public TimeOnly StartTime { get; }
+    public TimeOnly EndTime { get; }
     public string TimeZone { get; }
     public string Days { get; }
 
@@ -16,7 +16,7 @@ public class VMStartStopTagValue
         Days = tagValues[3];
 
         var timeValues = tagValues[1].Split("-");
-        StartTime = timeValues[0];
-        EndTime = timeValues[1];
+        StartTime = TimeOnly.FromTimeSpan(TimeSpan.Parse(timeValues[0]));
+        EndTime = TimeOnly.FromTimeSpan(TimeSpan.Parse(timeValues[1]));
     }
 }

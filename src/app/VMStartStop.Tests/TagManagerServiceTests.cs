@@ -67,58 +67,26 @@ public class TagManagerServiceTests
     }
 
     [Test]
-    public void ShouldReturnTurningOn_WhenTagContainsOnAndTriggerTimeIsAtStartTime()
+    [TestCase("ON;08:00-16:00;CET;WEEK", "08:00", VMStates.TurningOn)]
+    [TestCase("ON;08:00-16:00;CET;WEEK", "12:00", VMStates.Running)]
+    [TestCase("ON;08:00-16:00;CET;WEEK", "16:00", VMStates.TurningOff)]
+    [TestCase("ON;08:00-16:00;CET;WEEK", "17:00", VMStates.Stopped)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "23:00", VMStates.Running)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "01:00", VMStates.Running)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "07:00", VMStates.Stopped)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "21:00", VMStates.Stopped)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "22:00", VMStates.TurningOn)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "06:00", VMStates.TurningOff)]
+    public void ShouldReturnCorrectState_WhenTagContainsOnAndTriggerTimeIs(string tagValue, string triggerTime, VMStates expectedState)
     {
         // Arrange
-        var tagValue = new VMStartStopTagValue("ON;08:00-16:00;CET;WEEK");
-        var triggerTimestamp = TimeOnly.FromTimeSpan(TimeSpan.Parse("08:00"));
+        var tag = new VMStartStopTagValue(tagValue);
+        var triggerTimestamp = TimeOnly.FromTimeSpan(TimeSpan.Parse(triggerTime));
 
         // Act
-        var result = _tagManagerService.IsCurrentTag(tagValue, triggerTimestamp);
+        var result = _tagManagerService.IsCurrentTag(tag, triggerTimestamp);
 
         // Assert
-        result.Should().Be(VMStates.TurningOn);
-    }
-
-    [Test]
-    public void ShouldReturnRunning_WhenTagContainsOnAndTriggerTimeIsBetweenStartTimeAndEndTime()
-    {
-        // Arrange
-        var tagValue = new VMStartStopTagValue("ON;08:00-16:00;CET;WEEK");
-        var triggerTimestamp = TimeOnly.FromTimeSpan(TimeSpan.Parse("12:00"));
-
-        // Act
-        var result = _tagManagerService.IsCurrentTag(tagValue, triggerTimestamp);
-
-        // Assert
-        result.Should().Be(VMStates.Running);
-    }
-
-    [Test]
-    public void ShouldReturnTurningOff_WhenTagContainsOnAndTriggerTimeIsAtEndTime()
-    {
-        // Arrange
-        var tagValue = new VMStartStopTagValue("ON;08:00-16:00;CET;WEEK");
-        var triggerTimestamp = TimeOnly.FromTimeSpan(TimeSpan.Parse("16:00"));
-
-        // Act
-        var result = _tagManagerService.IsCurrentTag(tagValue, triggerTimestamp);
-
-        // Assert
-        result.Should().Be(VMStates.TurningOff);
-    }
-
-    [Test]
-    public void ShouldReturnStopped_WhenTagContainsOnAndTriggerTimeIsAfterEndTime()
-    {
-        // Arrange
-        var tagValue = new VMStartStopTagValue("ON;08:00-16:00;CET;WEEK");
-        var triggerTimestamp = TimeOnly.FromTimeSpan(TimeSpan.Parse("17:00"));
-
-        // Act
-        var result = _tagManagerService.IsCurrentTag(tagValue, triggerTimestamp);
-
-        // Assert
-        result.Should().Be(VMStates.Stopped);
+        result.Should().Be(expectedState);
     }
 }

@@ -22,7 +22,55 @@ public class TagManagerService : ITagManagerService
             return VMStates.Omit;
         }
 
-        throw new NotImplementedException();
+        if (tagValue.StartTime.CompareTo(tagValue.EndTime) < 0)
+        {
+            switch (currentTime)
+            {
+                case var _ when currentTime < tagValue.StartTime || currentTime > tagValue.EndTime:
+                    _logger.LogInformation("Tag contains ON, but it's not time to start VM");
+                    return VMStates.Stopped;
+
+                case var _ when currentTime == tagValue.StartTime:
+                    _logger.LogInformation("Tag contains ON, VM is starting");
+                    return VMStates.TurningOn;
+
+                case var _ when currentTime > tagValue.StartTime && currentTime < tagValue.EndTime:
+                    _logger.LogInformation("Tag contains ON, VM is running");
+                    return VMStates.Running;
+
+                case var _ when currentTime == tagValue.EndTime:
+                    _logger.LogInformation("Tag contains ON, VM is stopping");
+                    return VMStates.TurningOff;
+            }
+        }
+        else if (tagValue.StartTime.CompareTo(tagValue.EndTime) > 0)
+        {
+            switch (currentTime)
+            {
+                case var _ when currentTime == tagValue.StartTime:
+                    _logger.LogInformation("Tag contains ON, VM is starting");
+                    return VMStates.TurningOn;
+
+                case var _ when currentTime == tagValue.EndTime:
+                    _logger.LogInformation("Tag contains ON, VM is stopping");
+                    return VMStates.TurningOff;
+
+                case var _ when currentTime > tagValue.StartTime || currentTime < tagValue.EndTime:
+                    _logger.LogInformation("Tag contains ON, but it's not time to stop VM");
+                    return VMStates.Running;
+
+                case var _ when currentTime > tagValue.EndTime && currentTime < tagValue.StartTime:
+                    _logger.LogInformation("Tag contains ON, VM is stopped");
+                    return VMStates.Stopped;
+            }
+        }
+        else
+        {
+            _logger.LogError("Tag contains ON, but start and end time are the same");
+            throw new Exception("Start and end time are the same");
+        }
+
+        return VMStates.Omit;
     }
 
     public async Task GetTagsFromAzure()

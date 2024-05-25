@@ -255,6 +255,8 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [TimeOnly.CompareTo Method](https://learn.microsoft.com/en-us/dotnet/api/system.timeonly.compareto?view=net-8.0)
 - [Parse date and time strings in .NET](https://learn.microsoft.com/en-us/dotnet/standard/base-types/parsing-datetime)
 - [How to use the DateOnly and TimeOnly structures](https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly)
+- [NUnit: TestCase](https://docs.nunit.org/articles/nunit/writing-tests/attributes/testcase.html)
+- [Selection statements - if, if-else, and switch](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements)
 
 ## Tools
 

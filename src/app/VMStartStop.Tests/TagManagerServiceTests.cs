@@ -78,16 +78,16 @@ public class TagManagerServiceTests
     }
 
     [Test]
-    [TestCase("ON;08:00-16:00;CET;WEEK", "08:00", VMStates.TurningOn)]
-    [TestCase("ON;08:00-16:00;CET;WEEK", "12:00", VMStates.Running)]
-    [TestCase("ON;08:00-16:00;CET;WEEK", "16:00", VMStates.TurningOff)]
-    [TestCase("ON;08:00-16:00;CET;WEEK", "17:00", VMStates.Stopped)]
+    [TestCase("ON;08:00-16:00;CET;WEEK", "07:00", VMStates.TurningOn)]
+    [TestCase("ON;08:00-16:00;CET;WEEK", "11:00", VMStates.Running)]
+    [TestCase("ON;08:00-16:00;CET;WEEK", "15:00", VMStates.TurningOff)]
+    [TestCase("ON;08:00-16:00;CET;WEEK", "16:00", VMStates.Stopped)]
     [TestCase("ON;22:00-06:00;CET;WEEK", "23:00", VMStates.Running)]
     [TestCase("ON;22:00-06:00;CET;WEEK", "01:00", VMStates.Running)]
     [TestCase("ON;22:00-06:00;CET;WEEK", "07:00", VMStates.Stopped)]
-    [TestCase("ON;22:00-06:00;CET;WEEK", "21:00", VMStates.Stopped)]
-    [TestCase("ON;22:00-06:00;CET;WEEK", "22:00", VMStates.TurningOn)]
-    [TestCase("ON;22:00-06:00;CET;WEEK", "06:00", VMStates.TurningOff)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "20:00", VMStates.Stopped)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "21:00", VMStates.TurningOn)]
+    [TestCase("ON;22:00-06:00;CET;WEEK", "05:00", VMStates.TurningOff)]
     public void ShouldReturnCorrectState_WhenTagContainsOnAndTriggerTimeIs(string tagValue, string triggerTime, VMStates expectedState)
     {
         // Arrange

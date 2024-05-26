@@ -7,11 +7,13 @@ public class TagManagerService : ITagManagerService
 {
     private readonly ILogger _logger;
     private readonly ITagsRepository _tagsRepository;
+    private readonly IClock _clock;
 
-    public TagManagerService(ILoggerFactory loggerFactory, ITagsRepository tagsRepository)
+    public TagManagerService(ILoggerFactory loggerFactory, ITagsRepository tagsRepository, IClock clock)
     {
         _logger = loggerFactory.CreateLogger<TagManagerService>();
         _tagsRepository = tagsRepository;
+        _clock = clock;
     }
 
     public VMStates IsCurrentTag(VMStartStopTagValue tagValue, TimeOnly currentTime)
@@ -22,44 +24,46 @@ public class TagManagerService : ITagManagerService
             return VMStates.Omit;
         }
 
+        var localCurrentTime = _clock.ConvertUtcToLocalTime(currentTime, tagValue.TimeZone);
+
         if (tagValue.StartTime.CompareTo(tagValue.EndTime) < 0)
         {
-            switch (currentTime)
+            switch (localCurrentTime)
             {
-                case var _ when currentTime < tagValue.StartTime || currentTime > tagValue.EndTime:
+                case var _ when localCurrentTime < tagValue.StartTime || localCurrentTime > tagValue.EndTime:
                     _logger.LogInformation("Tag contains ON, but it's not time to start VM");
                     return VMStates.Stopped;
 
-                case var _ when currentTime == tagValue.StartTime:
+                case var _ when localCurrentTime == tagValue.StartTime:
                     _logger.LogInformation("Tag contains ON, VM is starting");
                     return VMStates.TurningOn;
 
-                case var _ when currentTime > tagValue.StartTime && currentTime < tagValue.EndTime:
+                case var _ when localCurrentTime > tagValue.StartTime && localCurrentTime < tagValue.EndTime:
                     _logger.LogInformation("Tag contains ON, VM is running");
                     return VMStates.Running;
 
-                case var _ when currentTime == tagValue.EndTime:
+                case var _ when localCurrentTime == tagValue.EndTime:
                     _logger.LogInformation("Tag contains ON, VM is stopping");
                     return VMStates.TurningOff;
             }
         }
         else if (tagValue.StartTime.CompareTo(tagValue.EndTime) > 0)
         {
-            switch (currentTime)
+            switch (localCurrentTime)
             {
-                case var _ when currentTime == tagValue.StartTime:
+                case var _ when localCurrentTime == tagValue.StartTime:
                     _logger.LogInformation("Tag contains ON, VM is starting");
                     return VMStates.TurningOn;
 
-                case var _ when currentTime == tagValue.EndTime:
+                case var _ when localCurrentTime == tagValue.EndTime:
                     _logger.LogInformation("Tag contains ON, VM is stopping");
                     return VMStates.TurningOff;
 
-                case var _ when currentTime > tagValue.StartTime || currentTime < tagValue.EndTime:
+                case var _ when localCurrentTime > tagValue.StartTime || localCurrentTime < tagValue.EndTime:
                     _logger.LogInformation("Tag contains ON, but it's not time to stop VM");
                     return VMStates.Running;
 
-                case var _ when currentTime > tagValue.EndTime && currentTime < tagValue.StartTime:
+                case var _ when localCurrentTime > tagValue.EndTime && localCurrentTime < tagValue.StartTime:
                     _logger.LogInformation("Tag contains ON, VM is stopped");
                     return VMStates.Stopped;
             }

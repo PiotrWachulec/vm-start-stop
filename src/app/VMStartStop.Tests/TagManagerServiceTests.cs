@@ -2,6 +2,7 @@ using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Moq;
 using MyCo.TagManager.Application;
 using MyCo.TagManager.Domain;
 using MyCo.TagManager.Infrastrucutre;
@@ -18,9 +19,19 @@ public class TagManagerServiceTests
     {
         var serviceProvider = new ServiceCollection().AddLogging().BuildServiceProvider();
         var logger = serviceProvider.GetService<ILoggerFactory>();
+
+        var clock = new Mock<IClock>();
+
+        clock.Setup(c => c.ConvertUtcToLocalTime(It.IsAny<TimeOnly>(), "CET"))
+            .Returns<TimeOnly, string>((time, timeZone) => time.AddHours(1));
+        clock.Setup(c => c.ConvertUtcToLocalTime(It.IsAny<TimeOnly>(), "EET"))
+            .Returns<TimeOnly, string>((time, timeZone) => time.AddHours(2));
+        clock.Setup(c => c.ConvertUtcToLocalTime(It.IsAny<TimeOnly>(), "AST"))
+            .Returns<TimeOnly, string>((time, timeZone) => time.AddHours(-4));
+
         var configuration = new ConfigurationBuilder().Build();
         var tagsRepository = new TagsRepository(logger, configuration);
-        _tagManagerService = new TagManagerService(logger, tagsRepository);
+        _tagManagerService = new TagManagerService(logger, tagsRepository, clock.Object);
     }
 
     [Test]

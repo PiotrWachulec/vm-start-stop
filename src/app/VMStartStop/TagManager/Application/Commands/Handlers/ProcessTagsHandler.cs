@@ -19,7 +19,7 @@ public class ProcessTagsHandler : IRequestHandler<ProcessTags>
     {
         _logger.LogInformation("Processing tags");
         _logger.LogInformation($"Time triggered: {request.TriggerTime}");
-        // _tagManagerService.GetTagsFromAzure();
+        _tagManagerService.GetTagsFromAzure(request.TriggerTime);
         return Task.CompletedTask;
     }
 }

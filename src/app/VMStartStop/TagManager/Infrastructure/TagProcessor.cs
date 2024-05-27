@@ -30,7 +30,7 @@ namespace MyCo.TagManager
 
             var decodedMessage = JsonSerializer.Deserialize<ProcessTags>(message.Body.ToString());
 
-            await _tagManagerService.GetTagsFromAzure();
+            await _tagManagerService.GetTagsFromAzure(decodedMessage.TriggerTime);
 
             // Complete the message
             await messageActions.CompleteMessageAsync(message);

@@ -77,7 +77,7 @@ public class TagManagerService : ITagManagerService
         return VMStates.Omit;
     }
 
-    public async Task GetTagsFromAzure()
+    public async Task<dynamic> GetTagsFromAzure(TimeOnly triggerTime)
     {
         // 1. Get all subscriptions
         // 2. Check if the subscription has the VMStartStop tag
@@ -93,5 +93,86 @@ public class TagManagerService : ITagManagerService
         var subscriptions = _tagsRepository.GetTagsFromSubscriptions();
         var resourceGroups = _tagsRepository.GetTagsFromResourceGroups();
         var vms = await _tagsRepository.GetTagsFromVirtualMachines();
+
+        var subscriptionsToSwitch = new List<dynamic>();
+        var resourceGroupsToSwitch = new List<dynamic>();
+        var vmsToSwitch = new List<dynamic>();
+
+        foreach (var subscription in subscriptions)
+        {
+            var vmState = IsCurrentTag(subscription.TagValue, triggerTime);
+
+            switch (vmState)
+            {
+                case VMStates.TurningOn:
+                    subscriptionsToSwitch.Add(new { SubscriptionId = subscription.Id, Action = "start" });
+                    break;
+
+                case VMStates.TurningOff:
+                    subscriptionsToSwitch.Add(new { SubscriptionId = subscription.Id, Action = "stop" });
+                    break;
+            }
+        }
+
+        foreach (var resourceGroup in resourceGroups)
+        {
+            var vmState = IsCurrentTag(resourceGroup.TagValue, triggerTime);
+
+            switch (vmState)
+            {
+                case VMStates.TurningOn:
+                    resourceGroupsToSwitch.Add(new
+                    {
+                        ResourceGroupName = resourceGroup.Name,
+                        SubscriptionId = resourceGroup.SubscriptionId,
+                        Action = "start"
+                    });
+                    break;
+
+                case VMStates.TurningOff:
+                    resourceGroupsToSwitch.Add(new
+                    {
+                        ResourceGroupName = resourceGroup.Name,
+                        SubscriptionId = resourceGroup.SubscriptionId,
+                        Action = "stop"
+                    });
+                    break;
+            }
+        }
+
+        foreach (var vm in vms)
+        {
+            var vmState = IsCurrentTag(vm.TagValue, triggerTime);
+
+            switch (vmState)
+            {
+                case VMStates.TurningOn:
+                    vmsToSwitch.Add(new
+                    {
+                        VmId = vm,
+                        SubscriptionId = vm.SubscriptionId,
+                        ResourceGroupName = vm.ResourceGroupName,
+                        Action = "start"
+                    });
+                    break;
+
+                case VMStates.TurningOff:
+                    vmsToSwitch.Add(new
+                    {
+                        VmId = vm,
+                        SubscriptionId = vm.SubscriptionId,
+                        ResourceGroupName = vm.ResourceGroupName,
+                        Action = "stop"
+                    });
+                    break;
+            }
+        }
+
+        return new
+        {
+            Subscriptions = subscriptionsToSwitch,
+            ResourceGroups = resourceGroupsToSwitch,
+            VMs = vmsToSwitch
+        };
     }
 }

@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MyCo.TagManager.Application;
 using MyCo.TagManager.Application.Commands;
@@ -11,11 +12,13 @@ namespace MyCo.TagManager
     {
         private readonly ILogger<TagProcessor> _logger;
         private readonly ITagManagerService _tagManagerService;
+        private readonly ServiceBusClient _serviceBusClient;
 
-        public TagProcessor(ITagManagerService tagManagerService, ILogger<TagProcessor> logger)
+        public TagProcessor(ITagManagerService tagManagerService, ILogger<TagProcessor> logger, IConfiguration configuration)
         {
             _tagManagerService = tagManagerService;
             _logger = logger;
+            _serviceBusClient = new ServiceBusClient(configuration["WriteServiceBusConnection"]);
         }
 
         [Function(nameof(TagProcessor))]

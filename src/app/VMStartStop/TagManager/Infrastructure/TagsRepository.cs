@@ -133,6 +133,7 @@ public class TagsRepository : ITagsRepository
                     new VirtualMachine(
                         virtualMachine.Data.Name,
                         new SubscriptionId(subscription.Data.Id),
+                        virtualMachine.Data.Id.ResourceGroupName,
                         new VMStartStopTagValue(virtualMachine.Data.Tags[_vmStartStopTagKey])
                     )
                 );

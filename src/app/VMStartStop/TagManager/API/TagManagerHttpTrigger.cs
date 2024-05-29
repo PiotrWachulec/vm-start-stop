@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net;
 using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
@@ -21,6 +22,10 @@ public class TagManagerHttpTrigger
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
 
+        _logger.LogInformation("Trigger time: {triggerTime}", req.Query["triggerTime"]);
+
+        TimeOnly triggerTime = TimeOnly.Parse(req.Query["triggerTime"], CultureInfo.InvariantCulture);
+
         var response = req.CreateResponse(HttpStatusCode.Accepted);
         response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
 
@@ -28,7 +33,7 @@ public class TagManagerHttpTrigger
 
         return new OutputType()
         {
-            OutputEvent = JsonSerializer.Serialize(new ProcessTags(TimeOnly.FromDateTime(DateTime.Now))),
+            OutputEvent = JsonSerializer.Serialize(new ProcessTags(triggerTime)),
             HttpResponse = response
         };
     }

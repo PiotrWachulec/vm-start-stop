@@ -257,6 +257,8 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [How to use the DateOnly and TimeOnly structures](https://learn.microsoft.com/en-us/dotnet/standard/datetime/how-to-use-dateonly-timeonly)
 - [NUnit: TestCase](https://docs.nunit.org/articles/nunit/writing-tests/attributes/testcase.html)
 - [Selection statements - if, if-else, and switch](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements)
+- [Using type dynamic](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/interop/using-type-dynamic)
+- [Quickstart: Send and receive messages from an Azure Service Bus queue (.NET)](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues?tabs=passwordless)
 
 ## Tools
 

@@ -25,6 +25,12 @@ public class TagManagerTimeTrigger
 
         _logger.LogInformation($"Log triggered at: {myTimer.ScheduleStatus.Last}");
 
+        if (myTimer.IsPastDue)
+        {
+            _logger.LogInformation("Timer is running late!");
+            return null;
+        }
+
         if (DateTime.Compare(myTimer.ScheduleStatus.Last, DateTime.Now.AddMinutes(-15)) < 0)
         {
             _logger.LogInformation($"Trigger is too late: triggered at: {myTimer.ScheduleStatus.Last}; processing time: {processingTime}");

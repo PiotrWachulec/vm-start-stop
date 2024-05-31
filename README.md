@@ -67,6 +67,15 @@ The raw version of the diagram is stored in the file: `docs/assets/vm-start-stop
 
 ![Infrastructure design on draw.io](docs/assets/images/infra-diagram.png)
 
+### Access
+
+To allow the function app to switch VMs, the service principal (or managed identity as in our case) should have the following permissions:
+- Reader,
+- Virtual Machine Contributor.
+
+Thanks to this, the function app can read subscriptions, and resource groups, look for VMs, and start/stop them.
+To avoid the manual assignment of permissions everywhere, it is recommended to use management groups.
+
 # Resource naming convention
 
 It is an excellent practice to have a naming convention for resources. The naming convention can help identify the resource's purpose, environment, owner, etc. It supports proper resource management and cost allocation and helps to determine the resources in the logs, monitor them, etc.

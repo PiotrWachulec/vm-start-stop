@@ -269,6 +269,12 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [Using type dynamic](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/interop/using-type-dynamic)
 - [Quickstart: Send and receive messages from an Azure Service Bus queue (.NET)](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues?tabs=passwordless)
 
+### Links time zones conversion
+
+- [The time zone ID 'Pacific Standard Time' was not found on the local computer](https://stackoverflow.com/questions/73687125/the-time-zone-id-pacific-standard-time-was-not-found-on-the-local-computer)
+- [TimeZoneConverter](https://github.com/mattjohnsonpint/TimeZoneConverter)
+- [C# DateTime Conversion With Specific TimeZone](https://www.c-sharpcorner.com/article/c-sharp-datetime-conversion-with-specific-timezone/)
+
 ## Tools
 
 - [Espanso](https://espanso.org/) - Text expander

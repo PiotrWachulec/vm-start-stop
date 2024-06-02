@@ -215,7 +215,7 @@ The first part defines whether the tag should apply to the scope. The value can 
 
 The second part defines the time range. The time range is described in the format `HH:MM-HH:MM`. The time is in the 24-hour format. The - character separates the time range. The time range defines when the VM should be turned on.
 
-The third part defines the timezone. The timezone should be defined in the UTC/STD configuration: [IANA timezone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). The summertime should be applied automatically.
+The third part defines the timezone. The timezone should be defined in the IANA configuration: [IANA timezone database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). The summertime should be applied automatically.
 
 The fourth part defines the days when the VM should be turned on. The value can be: `MONDAY/TUESDAY/WEDNESDAY/FRIDAY/SATURDAY/SUNDAY/WORKWEEK/WEEK/WEEKEND`. The values can be connected by comma, for example: `WEEKEND,MONDAY,TUESDAY`.
 
@@ -274,6 +274,8 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [The time zone ID 'Pacific Standard Time' was not found on the local computer](https://stackoverflow.com/questions/73687125/the-time-zone-id-pacific-standard-time-was-not-found-on-the-local-computer)
 - [TimeZoneConverter](https://github.com/mattjohnsonpint/TimeZoneConverter)
 - [C# DateTime Conversion With Specific TimeZone](https://www.c-sharpcorner.com/article/c-sharp-datetime-conversion-with-specific-timezone/)
+- [IANA timezones](https://www.iana.org/time-zones)
+- [Time Zone Conversion APIs](https://devblogs.microsoft.com/dotnet/date-time-and-time-zone-enhancements-in-net-6/#time-zone-conversion-apis)
 
 ## Tools
 

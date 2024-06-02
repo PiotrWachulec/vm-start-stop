@@ -175,4 +175,9 @@ public class TagManagerService : ITagManagerService
             VMs = vmsToSwitch
         };
     }
+
+    public bool IsTagValid(string tagValue)
+    {
+        return tagValue.Contains("ON") || tagValue.Contains("OFF");
+    }
 }

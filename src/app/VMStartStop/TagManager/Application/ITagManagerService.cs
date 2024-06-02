@@ -6,4 +6,5 @@ public interface ITagManagerService
 {
     public VMStates IsCurrentTag(VMStartStopTagValue tagValue, TimeOnly currentTime);
     public Task<dynamic> GetTagsFromAzure(TimeOnly triggerTime);
+    public bool IsTagValid(string tagValue);
 }

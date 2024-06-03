@@ -1,24 +1,26 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
-namespace MyCo
+namespace MyCo.TagManager.API;
+
+public class TagValidatorHttp
 {
-    public class TagValidatorHttp
+    private readonly ILogger _logger;
+
+    public TagValidatorHttp(ILoggerFactory logger)
     {
-        private readonly ILogger<TagValidatorHttp> _logger;
+        _logger = logger.CreateLogger<TagValidatorHttp>();
+    }
 
-        public TagValidatorHttp(ILogger<TagValidatorHttp> logger)
-        {
-            _logger = logger;
-        }
+    [Function("TagValidatorHttp")]
+    public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req)
+    {
+        _logger.LogInformation("C# HTTP trigger function processed a request.");
 
-        [Function("TagValidatorHttp")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req)
-        {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
-        }
+        var response = req.CreateResponse(HttpStatusCode.OK);
+
+        return response;
     }
 }

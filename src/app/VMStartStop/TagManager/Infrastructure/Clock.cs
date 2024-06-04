@@ -11,4 +11,9 @@ public class Clock : IClock
         var localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, timeZoneInfo);
         return TimeOnly.FromDateTime(localTime);
     }
+
+    public IList<string> GetTimeZones()
+    {
+        return TimeZoneInfo.GetSystemTimeZones().Select(tz => tz.Id).ToList();
+    }
 }

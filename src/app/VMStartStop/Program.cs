@@ -7,7 +7,7 @@ using MyCo.TagManager.Domain;
 using MyCo.TagManager.Infrastrucutre;
 
 var host = new HostBuilder()
-    .ConfigureFunctionsWorkerDefaults()
+    .ConfigureFunctionsWebApplication()
     .ConfigureServices(services =>
     {
         services.AddTransient<ITagManagerService, TagManagerService>();

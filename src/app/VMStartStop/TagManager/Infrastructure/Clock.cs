@@ -6,8 +6,16 @@ public class Clock : IClock
 {
     public TimeOnly ConvertUtcToLocalTime(TimeOnly time, string timeZone)
     {
-        var timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZone);
-        var utcTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, time.Hour, time.Minute, time.Second);
+        var timeZoneInfo = GetTimeZoneInfo(timeZone);
+
+        var utcTime = new DateTime(
+            DateTime.UtcNow.Year,
+            DateTime.UtcNow.Month,
+            DateTime.UtcNow.Day,
+            time.Hour,
+            time.Minute,
+            time.Second);
+
         var localTime = TimeZoneInfo.ConvertTimeFromUtc(utcTime, timeZoneInfo);
         return TimeOnly.FromDateTime(localTime);
     }
@@ -15,5 +23,14 @@ public class Clock : IClock
     public IList<string> GetTimeZones()
     {
         return TimeZoneInfo.GetSystemTimeZones().Select(tz => tz.Id).ToList();
+    }
+
+    private static TimeZoneInfo GetTimeZoneInfo(string timeZone)
+    {
+        return TimeZoneInfo.TryFindSystemTimeZoneById(timeZone, out TimeZoneInfo? timeZoneInfo)
+            ? timeZoneInfo
+            : TimeZoneInfo.TryConvertIanaIdToWindowsId(timeZone, out string? windowsTimeZoneId)
+                ? TimeZoneInfo.FindSystemTimeZoneById(windowsTimeZoneId)
+                : throw new ArgumentException($"Invalid timezone: {timeZone}");
     }
 }

@@ -2,3 +2,6 @@
 
 ###
 GET {{url}}/api/HttpExample
+
+###
+GET {{url}}/api/GetTimezonesHttp

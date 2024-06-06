@@ -20,9 +20,9 @@ public class Clock : IClock
         return TimeOnly.FromDateTime(localTime);
     }
 
-    public IList<string> GetTimeZones()
+    public IList<TimeZoneInfo> GetTimeZones()
     {
-        return TimeZoneInfo.GetSystemTimeZones().Select(tz => tz.Id).ToList();
+        return TimeZoneInfo.GetSystemTimeZones().ToList();
     }
 
     private static TimeZoneInfo GetTimeZoneInfo(string timeZone)

@@ -32,9 +32,15 @@ public class TagValidatorHttp
     public IActionResult GetTimezones([HttpTrigger(AuthorizationLevel.Function, "get")] HttpRequestData req)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
+        var timeZoneId = req.Query["timeZone"];
 
-        var timeZones = _clock.GetTimeZones();
-
-        return new OkObjectResult(timeZones);
+        if (string.IsNullOrEmpty(timeZoneId))
+        {
+            return new OkObjectResult(_clock.GetTimeZones());
+        }
+        else
+        {
+            return new OkObjectResult(_clock.GetTimeZoneInfoById(timeZoneId));
+        }
     }
 }

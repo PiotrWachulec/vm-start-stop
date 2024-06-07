@@ -25,6 +25,11 @@ public class Clock : IClock
         return TimeZoneInfo.GetSystemTimeZones().ToList();
     }
 
+    public TimeZoneInfo GetTimeZoneInfoById(string timeZone)
+    {
+        return GetTimeZoneInfo(timeZone);
+    } 
+
     private static TimeZoneInfo GetTimeZoneInfo(string timeZone)
     {
         return TimeZoneInfo.TryFindSystemTimeZoneById(timeZone, out TimeZoneInfo? timeZoneInfo)

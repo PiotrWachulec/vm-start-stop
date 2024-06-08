@@ -26,7 +26,7 @@ public class TagManagerTimeTrigger
         if (myTimer.IsPastDue)
         {
             _logger.LogInformation("Timer is running late!");
-            return null;
+            throw new Exception("Timer is running late!");
         }
 
         if (myTimer.ScheduleStatus is not null)

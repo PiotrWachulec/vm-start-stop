@@ -268,6 +268,9 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [Selection statements - if, if-else, and switch](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/selection-statements)
 - [Using type dynamic](https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/interop/using-type-dynamic)
 - [Quickstart: Send and receive messages from an Azure Service Bus queue (.NET)](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dotnet-get-started-with-queues?tabs=passwordless)
+- [Azure Functions HTTP trigger](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger?tabs=python-v2%2Cisolated-process%2Cnodejs-v4%2Cfunctionsv2&pivots=programming-language-csharp)
+- [out (C# Reference)](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/out)
+- [Guide for running C# Azure Functions in the isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide?tabs=windows#http-trigger)
 
 ### Links time zones conversion
 
@@ -276,6 +279,8 @@ There is an Easter egg for you. But this is about resting, spending time with yo
 - [C# DateTime Conversion With Specific TimeZone](https://www.c-sharpcorner.com/article/c-sharp-datetime-conversion-with-specific-timezone/)
 - [IANA timezones](https://www.iana.org/time-zones)
 - [Time Zone Conversion APIs](https://devblogs.microsoft.com/dotnet/date-time-and-time-zone-enhancements-in-net-6/#time-zone-conversion-apis)
+- [.NET globalization and ICU](https://learn.microsoft.com/en-us/dotnet/core/extensions/globalization-icu#app-local-icu)
+
 
 ## Tools
 

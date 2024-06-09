@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Net;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
@@ -26,15 +27,10 @@ public class TagManagerHttpTrigger
 
         TimeOnly triggerTime = TimeOnly.Parse(req.Query["triggerTime"], CultureInfo.InvariantCulture);
 
-        var response = req.CreateResponse(HttpStatusCode.Accepted);
-        response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-
-        response.WriteString("VM Start Stop: Welcome to Azure Functions!");
-
         return new OutputType()
         {
             OutputEvent = JsonSerializer.Serialize(new ProcessTags(triggerTime)),
-            HttpResponse = response
+            HttpResponse = new OkObjectResult("VM Start Stop: Welcome to Azure Functions!")
         };
     }
 }
@@ -44,5 +40,5 @@ public class OutputType
    [ServiceBusOutput("time-trigger-service-bus-queue", Connection = "WriteServiceBusConnection")]
    public string OutputEvent { get; set; }
 
-   public HttpResponseData HttpResponse { get; set; }
+   public ObjectResult HttpResponse { get; set; }
 }

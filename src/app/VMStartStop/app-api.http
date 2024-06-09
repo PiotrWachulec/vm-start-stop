@@ -1,7 +1,10 @@
 @url = http://localhost:7071
 
 ###
-GET {{url}}/api/HttpExample
+GET {{url}}/api/GetTimezonesHttp
 
 ###
-GET {{url}}/api/GetTimezonesHttp
+GET {{url}}/api/GetTimezonesHttp?timeZone=Central%20European%20Standard%20Time
+
+###
+POST {{url}}/api/TagManagerHttpTrigger?triggerTime=08:00:00
